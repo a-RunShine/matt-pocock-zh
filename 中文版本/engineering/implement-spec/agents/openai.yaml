@@ -1,0 +1,5 @@
+interface:
+  display_name: "实现规格"
+  short_description: "在代码中实现 /to-spec 和 /to-tickets 的结果"
+policy:
+  allow_implicit_invocation: false

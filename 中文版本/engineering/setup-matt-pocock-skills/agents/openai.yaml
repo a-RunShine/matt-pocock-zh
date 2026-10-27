@@ -1,0 +1,5 @@
+interface:
+  display_name: "设置 Matt Pocock Skills"
+  short_description: "为仓库配置这些 skill"
+policy:
+  allow_implicit_invocation: false
