@@ -14,6 +14,7 @@
 - 2026-10-27：同步 9 个文件；覆盖前备份到 `C:/Users/Administrator/.qoder-cn/skills-backup-20261027-140955`。
 - 2026-10-27：再次只读检查，漂移为 0。
 - 2026-10-27：验证安装目录的 `code-review/SKILL.md` 可被 YAML 解析（`name=code-review`），`hitl-loop.template.sh` 通过 `bash -n`。
+- 2026-10-27：P2 批次（提交 `32b3ce1`）再次同步 11 个文件，备份到 `C:/Users/Administrator/.qoder-cn/skills-backup-20261027-141707`；复查漂移为 0。
 
 ## 边界
 
