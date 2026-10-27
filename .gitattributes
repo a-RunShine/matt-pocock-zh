@@ -1,0 +1,2 @@
+# 上游与本地均以 LF 为准；比较时仍需归一化，勿依赖 checkout 行为
+* text=auto eol=lf

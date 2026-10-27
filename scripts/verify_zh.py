@@ -1,0 +1,206 @@
+#!/usr/bin/env python3
+"""只读校验中文译本的机械合规性。任何 FAIL 都以非零退出。"""
+
+from __future__ import annotations
+
+import re
+import subprocess
+import sys
+from pathlib import Path
+
+import yaml
+
+ROOT = Path(__file__).resolve().parent.parent
+ZH = ROOT / "中文版本"
+BUCKETS = ["engineering", "in-progress", "misc", "productivity"]
+
+failures: list[str] = []
+
+
+def ok(msg: str) -> None:
+    print(f"PASS  {msg}")
+
+
+def bad(msg: str) -> None:
+    failures.append(msg)
+    print(f"FAIL  {msg}")
+
+
+def section(name: str) -> None:
+    print(f"\n== {name} ==")
+
+
+def read(path: Path) -> str:
+    return path.read_text(encoding="utf-8")
+
+
+def frontmatter(text: str) -> str | None:
+    m = re.match(r"^---\r?\n(.*?)\r?\n---", text, re.S)
+    return m.group(1) if m else None
+
+
+def shape(value):
+    if isinstance(value, dict):
+        return {k: shape(v) for k, v in value.items()}
+    if isinstance(value, list):
+        return [shape(v) for v in value]
+    return type(value).__name__
+
+
+def main() -> int:
+    section("文件树对齐")
+    for bucket in BUCKETS:
+        en = {p.relative_to(ROOT / bucket).as_posix() for p in (ROOT / bucket).rglob("*") if p.is_file()}
+        zh = {p.relative_to(ZH / bucket).as_posix() for p in (ZH / bucket).rglob("*") if p.is_file()}
+        missing, extra = sorted(en - zh), sorted(zh - en)
+        if missing or extra:
+            bad(f"{bucket}: en={len(en)} zh={len(zh)} missing={len(missing)} extra={len(extra)}")
+            for item in missing:
+                print(f"       missing: {bucket}/{item}")
+            for item in extra:
+                print(f"       extra:   {bucket}/{item}")
+        else:
+            ok(f"{bucket}: {len(en)} 个文件一一对应")
+
+    section("frontmatter")
+    parse_failed = 0
+    name_mismatch = 0
+    for p in sorted(ZH.rglob("SKILL.md")):
+        fm = frontmatter(read(p))
+        if fm is None:
+            bad(f"{p.relative_to(ROOT)}: 缺少 frontmatter")
+            parse_failed += 1
+            continue
+        try:
+            data = yaml.safe_load(fm)
+        except yaml.YAMLError as exc:
+            bad(f"{p.relative_to(ROOT)}: YAML 解析失败: {str(exc).splitlines()[0]}")
+            parse_failed += 1
+            continue
+        name = data.get("name") if isinstance(data, dict) else None
+        if name != p.parent.name:
+            bad(f"{p.relative_to(ROOT)}: name={name!r} != 目录名 {p.parent.name!r}")
+            name_mismatch += 1
+        if not isinstance(name, str) or not re.fullmatch(r"[a-z0-9][a-z0-9-]*", name):
+            bad(f"{p.relative_to(ROOT)}: name 不是合法英文标识: {name!r}")
+            name_mismatch += 1
+    if not parse_failed:
+        ok("38 个 SKILL.md frontmatter 全部可被 YAML 解析")
+    if not name_mismatch:
+        ok("所有 name 为英文且与目录名一致")
+
+    section("agents/openai.yaml")
+    yaml_bad = 0
+    for p in sorted(ZH.rglob("agents/openai.yaml")):
+        rel = p.relative_to(ZH)
+        en_p = ROOT / rel
+        try:
+            zh_data = yaml.safe_load(read(p))
+            en_data = yaml.safe_load(read(en_p))
+        except yaml.YAMLError as exc:
+            bad(f"{p.relative_to(ROOT)}: YAML 解析失败: {str(exc).splitlines()[0]}")
+            yaml_bad += 1
+            continue
+        if shape(zh_data) != shape(en_data):
+            bad(f"{p.relative_to(ROOT)}: 键结构或取值类型与英文不一致")
+            yaml_bad += 1
+        for key in zh_data or {}:
+            if key not in {"interface", "policy"}:
+                bad(f"{p.relative_to(ROOT)}: 非法顶层键 {key!r}")
+                yaml_bad += 1
+        for key in (zh_data or {}).get("interface", {}):
+            if key not in {"display_name", "short_description"}:
+                bad(f"{p.relative_to(ROOT)}: 非法 interface 键 {key!r}")
+                yaml_bad += 1
+    if not yaml_bad:
+        ok("所有 openai.yaml 的键集合与英文一致，仅译 display_name / short_description")
+
+    section("禁用旧术语")
+    hits = []
+    for p in ZH.rglob("*"):
+        if p.is_file():
+            text = read(p)
+            if re.search(r"CONTEXT\.md|CONTEXT-MAP", text, re.I):
+                hits.append(str(p.relative_to(ROOT)))
+    if hits:
+        bad(f"发现 {len(hits)} 个文件仍含 CONTEXT.md / CONTEXT-MAP: {', '.join(hits)}")
+    else:
+        ok("无 CONTEXT.md / CONTEXT-MAP 残留")
+
+    section("协议字符串")
+    labels = ["needs-triage", "needs-info", "ready-for-agent", "ready-for-human", "wontfix", "wayfinder:map", "wayfinder:<type>"]
+    for label in labels:
+        en_count = sum(
+            read(p).count(label)
+            for bucket in BUCKETS
+            for p in (ROOT / bucket).rglob("*")
+            if p.is_file() and p.suffix in {".md", ".yaml", ".sh"}
+        )
+        zh_count = sum(read(p).count(label) for p in ZH.rglob("*") if p.is_file() and p.suffix in {".md", ".yaml", ".sh"})
+        if en_count != zh_count:
+            bad(f"标签 {label!r} 计数不一致: en={en_count} zh={zh_count}")
+        else:
+            ok(f"标签 {label!r} 计数一致 ({zh_count})")
+
+    triage_line = "> *This was generated by AI during triage.*"
+    if triage_line in read(ZH / "engineering/triage/SKILL.md"):
+        ok("triage AI 声明逐字保留")
+    else:
+        bad("triage AI 声明缺失或被翻译")
+
+    blocked = "BLOCKED: '$COMMAND' matches dangerous pattern '$pattern'. The user has prevented you from doing this."
+    if blocked in read(ZH / "misc/git-guardrails-claude-code/scripts/block-dangerous-git.sh"):
+        ok("BLOCKED 消息逐字保留")
+    else:
+        bad("BLOCKED 消息缺失或被翻译")
+
+    to_tickets = read(ZH / "engineering/to-tickets/SKILL.md")
+    missing_fields = [f for f in ("**Status:**", "**Blocked by:**") if f not in to_tickets]
+    if missing_fields:
+        bad(f"to-tickets 模板缺少协议字段: {', '.join(missing_fields)}")
+    else:
+        ok("to-tickets 模板保留 Status: / Blocked by:")
+
+    wayfinder = read(ZH / "engineering/wayfinder/SKILL.md")
+    headings = ["## Destination", "## Notes", "## Decisions so far", "## Not yet specified", "## Out of scope"]
+    missing_headings = [h for h in headings if h not in wayfinder]
+    if missing_headings:
+        bad(f"wayfinder 地图节名未保留英文: {', '.join(missing_headings)}")
+    else:
+        ok("wayfinder 地图节名保持英文")
+
+    avoid_hits = [str(p.relative_to(ROOT)) for p in ZH.rglob("*") if p.is_file() and "_避免_" in read(p)]
+    if avoid_hits:
+        bad(f"发现 _避免_ 标记: {', '.join(avoid_hits)}")
+    else:
+        ok("术语表标记统一为 _Avoid_")
+
+    section("in-progress beta 提示")
+    if "Beta 版本提示" in read(ZH / "in-progress/README.md"):
+        ok("beta 提示存在")
+    else:
+        bad("beta 提示缺失")
+
+    section("脚本语法")
+    scripts = [
+        ZH / "engineering/wizard/template.sh",
+        ZH / "engineering/diagnosing-bugs/scripts/hitl-loop.template.sh",
+        ZH / "misc/git-guardrails-claude-code/scripts/block-dangerous-git.sh",
+    ]
+    for script in scripts:
+        proc = subprocess.run(["bash", "-n", script.name], cwd=script.parent, capture_output=True, text=True)
+        if proc.returncode == 0 and not proc.stderr.strip():
+            ok(f"bash -n {script.name}")
+        else:
+            bad(f"bash -n {script.name} 失败: {proc.stderr.strip()}")
+
+    print()
+    if failures:
+        print(f"结果：{len(failures)} 项失败")
+        return 1
+    print("结果：全部通过")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
