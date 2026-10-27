@@ -12,7 +12,7 @@
 - **[improve-codebase-architecture](./improve-codebase-architecture/SKILL.md)**：扫描代码库以发现深化机会，以可视化的 HTML 报告呈现，然后针对你所选的一项进行拷问。
 - **[setup-matt-pocock-skills](./setup-matt-pocock-skills/SKILL.md)**：为工程类 skill 配置本仓库（issue tracker、分诊标签、领域文档布局）。每个仓库运行一次。
 - **[to-spec](./to-spec/SKILL.md)**：把当前对话转化为规格说明，并发布到 issue tracker。
-- **[to-tickets](./to-tickets/SKILL.md)**：把任何计划、规格或对话拆分为一组示踪弹式工单，每张声明其阻塞边，既可以是本地文件中的文本，也可以是真实 tracker 上的原生阻塞链接。
+- **[to-tickets](./to-tickets/SKILL.md)**：把任何计划、规格或对话拆分为一组曳光弹式工单，每张声明其阻塞边，既可以是本地文件中的文本，也可以是真实 tracker 上的原生阻塞链接。
 - **[implement](./implement/SKILL.md)**：构建规格或一组工单所描述的工作，在预先约定的接缝处驱动 `/tdd`，并在提交前以 `/code-review` 收尾。
 - **[implement-spec](./implement-spec/SKILL.md)**：在一条集成分支上实现整份规格。把工单当作任务图处理，在就绪的前沿上运行实现者子智能体以实现最大并发，然后以 `/code-review` 收尾。
 - **[wayfinder](./wayfinder/SKILL.md)**：把超出单个智能体会话容量的大型工作规划为 issue tracker 上的一张共享决策工单地图，并逐一解决，直到通往目的地的路径清晰。

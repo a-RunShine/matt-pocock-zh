@@ -34,16 +34,16 @@ type Request = {
   body: { id: string };
   headers: Record<string, string>;
   cookies: Record<string, string>;
-  // ...20 more properties
+  // ……另外 20 个属性
 };
 
 it("gets user by id", () => {
-  // Only care about body.id but must fake entire Request
+  // 只关心 body.id，却必须伪造整个 Request
   getUser({
     body: { id: "123" },
     headers: {},
     cookies: {},
-    // ...fake all 20 properties
+    // ……把 20 个属性全部伪造
   });
 });
 ```
@@ -83,7 +83,7 @@ getUser(fromPartial({ body: { id: "123" } }));
 迁移前：
 
 ```ts
-getUser({ body: { id: 123 } } as unknown as Request); // wrong type on purpose
+getUser({ body: { id: 123 } } as unknown as Request); // 故意写错类型
 ```
 
 迁移后：

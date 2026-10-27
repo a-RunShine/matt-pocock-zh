@@ -5,23 +5,23 @@
 ## 结构
 
 ```md
-# {Topic} 术语表
+# {Topic} Glossary
 
 {一两句话，描述本术语表所涵盖的主题。}
 
-## 术语
+## Terms
 
 **Hypertrophy**：
 在反复的训练课中，由机械张力和代谢压力驱动的肌肉增长。
-_Avoid_：Bulking、getting big
+_Avoid_: Bulking、getting big
 
 **Progressive overload**：
 通过负荷、训练量或强度，随时间系统性地增加肌肉所承受的需求。
-_Avoid_：Pushing harder、levelling up
+_Avoid_: Pushing harder、levelling up
 
-**RPE**：
+**RPE (Rate of Perceived Exertion)**：
 对一组动作感受有多吃力的 1–10 自评，其中 10 表示力竭，8 表示还剩两次动作的余量。
-_Avoid_：Effort score、intensity rating
+_Avoid_: Effort score、intensity rating
 ```
 
 ## 规则

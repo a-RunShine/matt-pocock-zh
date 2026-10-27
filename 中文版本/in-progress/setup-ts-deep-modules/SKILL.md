@@ -1,6 +1,6 @@
 ---
 name: setup-ts-deep-modules
-description: 在 TypeScript 仓库中接入 dependency-cruiser，使每个包都成为深度模块：实现隐藏在子文件夹中，只能通过其入口文件访问。由用户调用。
+description: 在 TypeScript 仓库中接入 dependency-cruiser，使每个包都成为深度模块：实现隐藏在子文件夹中，只能通过其入口文件访问。用户调用型。
 disable-model-invocation: true
 ---
 

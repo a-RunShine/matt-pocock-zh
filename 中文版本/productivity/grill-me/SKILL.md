@@ -1,6 +1,6 @@
 ---
 name: grill-me
-description: 一场不间断的访谈，用于打磨计划或设计。
+description: 一场不留情面的访谈，用于打磨计划或设计。
 disable-model-invocation: true
 ---
 

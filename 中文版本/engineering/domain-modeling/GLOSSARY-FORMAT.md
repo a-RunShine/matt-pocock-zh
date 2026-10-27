@@ -3,23 +3,23 @@
 ## 结构
 
 ```md
-# {上下文名称}
+# {Context Name}
 
 {一两句话，描述这个上下文是什么，以及它为何存在。}
 
-## 语言
+## Language
 
-**Order**：
+**Order**:
 {一两句话描述该术语}
-_Avoid_：Purchase、transaction
+_Avoid_: Purchase, transaction
 
-**Invoice**：
+**Invoice**:
 发货后发送给客户的付款请求。
-_Avoid_：Bill、payment request
+_Avoid_: Bill, payment request
 
-**Customer**：
+**Customer**:
 下订单的个人或组织。
-_Avoid_：Client、buyer、account
+_Avoid_: Client, buyer, account
 ```
 
 ## 规则
@@ -38,13 +38,13 @@ _Avoid_：Client、buyer、account
 ```md
 # Glossary Map
 
-## 上下文
+## Contexts
 
 - [Ordering（订单）](./src/ordering/GLOSSARY.md)：接收并跟踪客户订单
 - [Billing（计费）](./src/billing/GLOSSARY.md)：生成发票并处理付款
 - [Fulfillment（履约）](./src/fulfillment/GLOSSARY.md)：管理仓库拣货和发货
 
-## 关系
+## Relationships
 
 - **Ordering → Fulfillment**：Ordering 发出 `OrderPlaced` 事件；Fulfillment 消费它以开始拣货
 - **Fulfillment → Billing**：Fulfillment 发出 `ShipmentDispatched` 事件；Billing 消费它以生成发票

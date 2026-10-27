@@ -27,7 +27,7 @@ disable-model-invocation: true
 - `docs/agents/`：此 skill 之前的产出是否已经存在？
 - `.scratch/`：说明已在使用本地 markdown 的 issue tracker 约定
 - `triage` skill 是否已安装？（同级存在 `triage` skill 文件夹，或 `triage` 在你的可用 skill 中。）这决定了 B 节是否需要运行。
-- 单体仓库（monorepo）信号：`pnpm-workspace.yaml`、`package.json` 中的 `workspaces` 字段，或拥有自身 `src/` 的已填充 `packages/*`。这些只出现在真正庞大的多包仓库中；它们的缺席即意味着单一上下文，这几乎是所有仓库的情况。
+- 单体仓库（monorepo）信号：`pnpm-workspace.yaml`、`package.json` 中的 `workspaces` 字段，或拥有自身 `src/` 的已填充 `packages/*`。这些只出现在真正庞大的多包仓库中；它们的缺席即意味着 single-context（单一上下文），这几乎是所有仓库的情况。
 
 ### 2. 展示发现并询问
 
@@ -56,9 +56,9 @@ disable-model-invocation: true
 
 默认标签即五个规范角色，每个标签字符串与其名称相同：`needs-triage`、`needs-info`、`ready-for-agent`、`ready-for-human`、`wontfix`。如果用户选择**是**，就原样写入。只有当用户选择**否**（通常是因为其 tracker 已使用其他名称，例如用 `bug:triage` 代表 `needs-triage`）时，才收集覆盖值，使 `triage` 应用已有标签，而不是创建重复的标签。
 
-**C 节：领域文档。** 默认采用**单一上下文**（仓库根目录下一个 `GLOSSARY.md` 加 `docs/adr/`）。这适合几乎所有仓库，无需询问即可写入。
+**C 节：领域文档。** 默认采用 **single-context**（仓库根目录下一个 `GLOSSARY.md` 加 `docs/adr/`）。这适合几乎所有仓库，无需询问即可写入。
 
-只有在探索发现单体仓库信号时，才提供**多上下文**（根目录下的 `GLOSSARY-MAP.md` 指向各上下文的 `GLOSSARY.md` 文件）。然后确认用户想要哪种布局。
+只有在探索发现单体仓库信号时，才提供 **multi-context**（根目录下的 `GLOSSARY-MAP.md` 指向各上下文的 `GLOSSARY.md` 文件）。然后确认用户想要哪种布局。
 
 ### 3. 确认并编辑
 

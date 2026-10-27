@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 在项目的 issue tracker 上，通过一套小型的分诊角色状态机来推进 issue。
 
-如果本仓库将外部 pull request 视为一个请求入口（参见 issue tracker 配置），分诊也涵盖它们：**PR 就是附带代码的 issue**，使用相同的角色、相同的状态和相同的机器，但会在下文中以"对于 PR"标注的少数差异处有所不同。将裸的 `#42` 解析为 issue 还是 PR，取决于 tracker 配置。
+如果本仓库将外部 pull request 视为一个请求入口（参见 issue tracker 配置），分诊也涵盖它们：**PR 就是附带代码的 issue**，使用相同的角色、相同的状态和同一套状态机，但会在下文中以"对于 PR"标注的少数差异处有所不同。将裸的 `#42` 解析为 issue 还是 PR，取决于 tracker 配置。
 
 在分诊过程中发布到 issue tracker 的每一条评论或 issue，**必须**以以下免责声明开头：
 
@@ -92,20 +92,20 @@ disable-model-invocation: true
 ## 需要信息的模板
 
 ```markdown
-## 分诊记录
+## Triage Notes
 
-**目前已确认的内容：**
+**What we've established so far:**
 
 - 要点 1
 - 要点 2
 
-**我们仍需要你（@报告者）提供的信息：**
+**What we still need from you (@reporter):**
 
 - 问题 1
 - 问题 2
 ```
 
-把拷问期间已解决的所有内容都记录在"目前已确认的内容"之下，以免工作成果丢失。问题必须具体且可操作，而不是"请提供更多信息"。
+把拷问期间已解决的所有内容都记录在 "What we've established so far" 之下，以免工作成果丢失。问题必须具体且可操作，而不是"请提供更多信息"。
 
 ## 恢复之前的会话
 

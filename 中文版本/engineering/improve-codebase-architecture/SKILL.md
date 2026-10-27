@@ -38,7 +38,7 @@ disable-model-invocation: true
 
 将一个自包含的 HTML 文件写入操作系统的临时目录，这样不会有任何文件落入仓库。从 `$TMPDIR` 解析临时目录，若未设置则回退到 `/tmp`（Windows 上为 `%TEMP%`），并写入 `<tmpdir>/architecture-review-<timestamp>.html`，使每次运行都生成一个新文件。为用户打开它（Linux 上用 `xdg-open <path>`，macOS 上用 `open <path>`，Windows 上用 `start <path>`），并告诉用户其绝对路径。
 
-报告使用 **Tailwind（通过 CDN）** 进行布局和样式设计，并在图和结构关系较为清晰时使用 **Mermaid（通过 CDN）** 绘制图表。将 Mermaid 与手工绘制的 CSS/SVG 视觉效果结合使用：当关系呈图状（调用图、依赖关系、时序）时使用 Mermaid；当你希望呈现更具编辑风格的效果（质量分布图、剖面图、折叠动画）时，使用手工制作的 div/SVG。每个候选项都要有**前后对比的可视化**。要具有视觉性。
+报告使用 **Tailwind（通过 CDN）** 进行布局和样式设计，并在图（graph）、流程（flow）或时序（sequence）能可靠表达结构时使用 **Mermaid（通过 CDN）** 绘制图表。将 Mermaid 与手工绘制的 CSS/SVG 视觉效果结合使用：当关系呈图状（调用图、依赖关系、时序）时使用 Mermaid；当你希望呈现更具编辑风格的效果时——体量图（面积对比图）、剖面图、折叠动画——使用手工制作的 div/SVG。每个候选项都要有**前后对比的可视化**。要具有视觉性。
 
 对于每个候选项，渲染一张卡片，包含：
 

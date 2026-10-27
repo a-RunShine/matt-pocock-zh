@@ -43,7 +43,7 @@ interface ThemeConfig {
 }
 ```
 
-## 先前的请求
+## Prior requests
 
 - #42："添加深色模式支持"
 - #87："为无障碍使用的夜间主题"
@@ -74,7 +74,7 @@ interface ThemeConfig {
 
 维护者可以：
 
-- **确认**：新 issue 被添加到现有文件的"先前的请求"列表中，然后关闭
+- **确认**：新 issue 被添加到现有文件的 "Prior requests" 列表中，然后关闭
 - **重新考虑**：范围之外的文件被删除或更新，该 issue 按正常分诊流程继续
 - **不同意**：这些 issue 相关但不同，按正常分诊流程继续
 
@@ -88,7 +88,7 @@ interface ThemeConfig {
 
 1. 维护者判定某个功能请求超出范围
 2. 检查是否已存在匹配的 `.out-of-scope/` 文件
-3. 如果存在：将新 issue 追加到"先前的请求"列表
+3. 如果存在：将新 issue 追加到 "Prior requests" 列表
 4. 如果不存在：以概念名称、决定、理由以及第一个先前请求新建一个文件
 5. 在 issue 上发布评论，解释该决定并提及 `.out-of-scope/` 文件
 6. 以 `wontfix` 标签关闭 issue

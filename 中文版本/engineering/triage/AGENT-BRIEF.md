@@ -129,7 +129,7 @@ issue 可能在 `ready-for-agent` 状态中停留数天或数周。在此期间�
 - [ ] 将功能以 wontfix 关闭时，会在 `.out-of-scope/` 中创建或更新文件
 - [ ] 文件包含决定、理由，以及指向已关闭 issue 的链接
 - [ ] 如果已存在匹配的 `.out-of-scope/` 文件，新 issue 会被追加到
-      其"先前的请求"列表中，而不是创建重复文件
+      其 "Prior requests" 列表中，而不是创建重复文件
 - [ ] 分诊期间，当新 issue 与先前的拒绝相匹配时，
       会检查并呈现现有的 `.out-of-scope/` 文件
 
