@@ -3,9 +3,9 @@ name: code-review
 description: "沿两个维度评审自某个固定基准点（提交、分支、标签或 merge-base）以来的变更：规范（代码是否遵循本仓库的编码规范？）和规格（代码是否符合源 issue/规格说明的要求？）。两项评审在并行的子智能体中运行，并并排报告。当用户希望评审一个分支、一个 PR、进行中的工作区变更，或提出\"自 X 以来的评审\"时使用。"
 ---
 
-围绕 `HEAD` 与用户提供的某个固定基准点之间的 diff 进行双轴评审：
+围绕 `HEAD` 与用户提供的某个固定基准点之间的 diff 进行双维度评审：
 
-- **规范（Standards）**：代码是否符合本仓库的已有编码规范？
+- **规范（Standards）**：代码是否符合本仓库记录在案的编码规范？
 - **规格（Spec）**：代码是否忠实地实现了源 issue/规格说明？
 
 两个维度都以**并行子智能体**的方式运行，使它们的上下文互不污染，然后由本 skill 汇总它们的发现。
@@ -18,7 +18,7 @@ issue tracker 应已提供给你。如果没有，就告诉用户运行 `/setup-
 
 用户所说的任何内容都是基准点（提交 SHA、分支名、标签、`main`、`HEAD~5` 等）。如果用户没有指定，就询问。
 
-只捕获一次 diff 命令：`git diff <fixed-point>...HEAD`（使用三点语法，因此比较的是与 merge-base 的对比）。同时记录提交列表：`git log <fixed-point>..HEAD --oneline`。
+先把 diff 命令固定下来：`git diff <fixed-point>...HEAD`（使用三点语法，因此比较的是与 merge-base 的对比）。同时记录提交列表：`git log <fixed-point>..HEAD --oneline`。
 
 在继续之前，确认基准点能够解析（`git rev-parse <fixed-point>`），并且 diff 非空。无效的引用或空的 diff 应当在这里就失败，而不是在两个并行子智能体内部才失败。
 

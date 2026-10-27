@@ -57,7 +57,7 @@ stage() {
 
 # say "..." 打印一行普通说明。
 say()  { printf '  %s\n' "$1"; }
-# step "..." 是人类在浏览器中要执行的一个动作。
+# step "..." 是人类在浏览器中要执行的一个带编号感的动作。
 step() { printf '  %s•%s %s\n' "$BLUE" "$RESET" "$1"; }
 note() { printf '  %s%s%s\n' "$DIM" "$1" "$RESET"; }
 warn() { printf '  %s⚠ %s%s\n' "$YELLOW" "$1" "$RESET"; }

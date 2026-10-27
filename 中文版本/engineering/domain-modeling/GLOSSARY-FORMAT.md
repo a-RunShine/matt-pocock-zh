@@ -36,7 +36,7 @@ _Avoid_：Client、buyer、account
 **多上下文：** 仓库根目录下的 `GLOSSARY-MAP.md` 列出各个上下文、它们所在的位置，以及它们之间的关系：
 
 ```md
-# 术语地图
+# Glossary Map
 
 ## 上下文
 
