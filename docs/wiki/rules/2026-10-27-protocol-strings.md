@@ -6,6 +6,7 @@
 
 - **保持英文**：分诊标签、`wayfinder:*`、tracker 协议行 `Status:` / `Blocked by:`、wayfinder 地图节名（`Destination` / `Notes` / `Decisions so far` / `Not yet specified` / `Out of scope`）、术语表样板名与 `_Avoid_` 标记、`name:`、`openai.yaml` 键名、triage AI 声明、`BLOCKED:`。
 - **可以翻译**：说明性散文、注释、模板里给人看的提示文字。
+- **可以做例外**：ADR、学习记录、文章等模板里「给人填写的标题占位符」允许本地化；不承担跨文件指代，不按字面解析。
 - **一律不译**：命令、变量名、正则、JSON/YAML 键值、路径、占位符标识。
 
 理由是这些字符串是跨文件的**指代**：一旦翻译，同一概念会出现中英两套名字，子智能体按一套写、另一套读。

@@ -39,7 +39,7 @@ issue 可能在 `ready-for-agent` 状态中停留数天或数周。在此期间�
 ## 模板
 
 ```markdown
-## 智能体简报
+## Agent Brief
 
 **类别：** bug / enhancement
 **摘要：** 对需要发生之事的一行描述
@@ -72,7 +72,7 @@ issue 可能在 `ready-for-agent` 状态中停留数天或数周。在此期间�
 ### 好的智能体简报（bug）
 
 ```markdown
-## 智能体简报
+## Agent Brief
 
 **类别：** bug
 **摘要：** Skill 描述截断时会在词中间切断，产生错误的输出
@@ -103,7 +103,7 @@ issue 可能在 `ready-for-agent` 状态中停留数天或数周。在此期间�
 ### 好的智能体简报（enhancement）
 
 ```markdown
-## 智能体简报
+## Agent Brief
 
 **类别：** enhancement
 **摘要：** 添加 `.out-of-scope/` 目录支持，用于跟踪被拒绝的功能请求
@@ -144,7 +144,7 @@ issue 可能在 `ready-for-agent` 状态中停留数天或数周。在此期间�
 对于 PR，"当前行为"描述的是 diff 的状态，简报要求智能体完成或修复它，而不是从零开始构建。
 
 ```markdown
-## 智能体简报
+## Agent Brief
 
 **类别：** enhancement
 **摘要：** 完成贡献者为 `triage list` 添加的 `--json` 输出标志
@@ -177,7 +177,7 @@ diff 也与项目的命令结构相符。仍有两处缺口：错误仍以人类
 ### 糟糕的智能体简报
 
 ```markdown
-## 智能体简报
+## Agent Brief
 
 **摘要：** 修复分诊 bug
 

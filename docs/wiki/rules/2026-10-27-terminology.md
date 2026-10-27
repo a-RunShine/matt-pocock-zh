@@ -36,6 +36,13 @@
 | sign in | 登录 | 不是「签名」 |
 | workaround | 变通方案 | 首次可括注 workaround |
 | hack | 取巧手段 | 不是「黑客手段」 |
+| schedule | 定时任务 | 不写「日程」 |
+| tracer bullet | 曳光弹（tracer bullet） | 不写「示踪弹」 |
+| prose | 成段文字（prose） | 不是文学体裁「散文」 |
+| block | 块 | paragraph 才译「段落」 |
+| mass diagram | 体量图（面积对比图） | 不是「质量分布图」 |
+| relentless | 不留情面 / 不依不饶 | 按词性选，不用「不间断」 |
+| assets | 资产（assets） | 与 resources「资源」区分 |
 | 分诊标签 / `wayfinder:*` / `BLOCKED:` / triage AI 声明 | 保留 | 见 [协议字符串](2026-10-27-protocol-strings.md) |
 
 ## 相关

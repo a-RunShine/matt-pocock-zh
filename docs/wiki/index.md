@@ -10,6 +10,7 @@
 
 ## 决策
 
+- [2026-10-27 ask-matt 的 rule out 裁定](decisions/2026-10-27-ask-matt-rule-out.md) — 上游原句与决策树矛盾，按可执行语义译为「先定下来」。
 - [2026-10-27 四个源桶收进 英文版本/](decisions/2026-10-27-source-folder.md) — 英文源不再平行摆在根目录，与 `中文版本/` 对称。
 - [2026-10-27 同步到实际安装目录](decisions/2026-10-27-install-sync.md) — 9 个修复文件已同步到 `~/.qoder-cn/skills`，漂移归零。
 - [2026-10-27 定时任务](decisions/2026-10-27-scheduled-tasks.md) — 每周一核对上游、每月 1 日巡检 wiki。
@@ -33,6 +34,7 @@
 ## 审计
 
 - [译文保真抽检 2026-10-27](audits/2026-10-27-fidelity.md) — 10 个 skill：P0 1、P1 4、P2 24；code-review 的 frontmatter 无法解析。
+- [全量保真审计 2026-10-27](audits/2026-10-27-fidelity-full.md) — 剩余 28 个 skill：P1 6、P2 47；已全部修复并部署。
 - [机械合规审计 2026-10-27](audits/2026-10-27-compliance.md) — 38 skill / 107 文件：6 项通过；协议字符串与模板脚手架是主要缺口。
 
 ## 问题
