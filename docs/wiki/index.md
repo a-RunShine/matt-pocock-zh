@@ -10,6 +10,7 @@
 
 ## 决策
 
+- [2026-10-27 定时任务](decisions/2026-10-27-scheduled-tasks.md) — 每周一核对上游、每月 1 日巡检 wiki。
 - [2026-10-27 元数据收进 docs/](decisions/2026-10-27-docs-consolidation.md) — `docs/wiki/` 存记忆，`docs/reports/` 存来源。
 - [2026-10-27 Wiki 位置](decisions/2026-10-27-wiki-location.md) — 最初放在仓库根 `wiki/`；位置部分已被上一条取代。
 - [2026-10-27 报告与 wiki 分离](decisions/2026-10-27-sources-vs-wiki.md) — 原始报告与 wiki 职责分离；位置已改为 `docs/reports/`。
