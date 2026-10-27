@@ -10,6 +10,7 @@
 
 ## 决策
 
+- [2026-10-27 四个源桶收进 英文版本/](decisions/2026-10-27-source-folder.md) — 英文源不再平行摆在根目录，与 `中文版本/` 对称。
 - [2026-10-27 同步到实际安装目录](decisions/2026-10-27-install-sync.md) — 9 个修复文件已同步到 `~/.qoder-cn/skills`，漂移归零。
 - [2026-10-27 定时任务](decisions/2026-10-27-scheduled-tasks.md) — 每周一核对上游、每月 1 日巡检 wiki。
 - [2026-10-27 元数据收进 docs/](decisions/2026-10-27-docs-consolidation.md) — `docs/wiki/` 存记忆，`docs/reports/` 存来源。

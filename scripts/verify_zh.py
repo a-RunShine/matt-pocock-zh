@@ -11,6 +11,7 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
+EN = ROOT / "英文版本"
 ZH = ROOT / "中文版本"
 BUCKETS = ["engineering", "in-progress", "misc", "productivity"]
 
@@ -50,7 +51,7 @@ def shape(value):
 def main() -> int:
     section("文件树对齐")
     for bucket in BUCKETS:
-        en = {p.relative_to(ROOT / bucket).as_posix() for p in (ROOT / bucket).rglob("*") if p.is_file()}
+        en = {p.relative_to(EN / bucket).as_posix() for p in (EN / bucket).rglob("*") if p.is_file()}
         zh = {p.relative_to(ZH / bucket).as_posix() for p in (ZH / bucket).rglob("*") if p.is_file()}
         missing, extra = sorted(en - zh), sorted(zh - en)
         if missing or extra:
@@ -93,7 +94,7 @@ def main() -> int:
     yaml_bad = 0
     for p in sorted(ZH.rglob("agents/openai.yaml")):
         rel = p.relative_to(ZH)
-        en_p = ROOT / rel
+        en_p = EN / rel
         try:
             zh_data = yaml.safe_load(read(p))
             en_data = yaml.safe_load(read(en_p))
@@ -133,7 +134,7 @@ def main() -> int:
         en_count = sum(
             read(p).count(label)
             for bucket in BUCKETS
-            for p in (ROOT / bucket).rglob("*")
+            for p in (EN / bucket).rglob("*")
             if p.is_file() and p.suffix in {".md", ".yaml", ".sh"}
         )
         zh_count = sum(read(p).count(label) for p in ZH.rglob("*") if p.is_file() and p.suffix in {".md", ".yaml", ".sh"})
