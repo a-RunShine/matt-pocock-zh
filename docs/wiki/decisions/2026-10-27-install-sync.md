@@ -16,6 +16,9 @@
 - 2026-10-27：验证安装目录的 `code-review/SKILL.md` 可被 YAML 解析（`name=code-review`），`hitl-loop.template.sh` 通过 `bash -n`。
 - 2026-10-27：P2 批次（提交 `32b3ce1`）再次同步 11 个文件，备份到 `C:/Users/Administrator/.qoder-cn/skills-backup-20261027-141707`；复查漂移为 0。
 - 2026-10-27：全量保真修复（提交 `d33e8f7`）同步 40 个文件，备份到 `C:/Users/Administrator/.qoder-cn/skills-backup-20261027-142929`；复查漂移为 0。
+- 2026-10-27 17:20：复查发现安装目录当时只剩 `eli5` 与 `grilling` 两个 skill，38 个 Matt 中文 skill 并不在位——与本页「同步前状态」一节的记述不符，记此更正。
+- 2026-10-27 17:35：按用户要求，从 `中文版本/` 重新安装全部 38 个 skill 到 `C:/Users/Administrator/.qoder-cn/skills`（平铺，按桶内 skill 名建目录）；覆盖前整目录备份到 `C:/Users/Administrator/AppData/Local/Temp/qoder-cn-skills-backup-20261027-134923`。
+- 2026-10-27 17:36：只读检查漂移为 0、缺失 0、多出 0；逐 skill 比对文件数无差异，38 个 `SKILL.md` 的 `name` 均等于目录名。`~/.cc-switch/skills`（英文上游安装位，72 个目录）未触碰。
 
 ## 边界
 
