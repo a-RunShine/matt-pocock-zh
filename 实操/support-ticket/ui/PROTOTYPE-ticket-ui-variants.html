@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>原型：客服工单工作台（三种变体）</title>
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --panel: #fff;
+    --ink: #151a23;
+    --muted: #6b7280;
+    --line: #e6e8ec;
+    --accent: #2f6feb;
+    --warn: #b54708;
+    --danger: #b42318;
+    --ok: #067647;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 14px/1.6 -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    padding-bottom: 96px;
+  }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .proto-note {
+    max-width: 1240px; margin: 0 auto; padding: 22px 24px 6px;
+  }
+  .proto-note h1 { font-size: 20px; margin: 0 0 6px; }
+  .proto-note p { margin: 0; color: var(--muted); max-width: 80ch; }
+  .tag {
+    display: inline-block; font-size: 12px; color: var(--warn); background: #fff4e5;
+    border: 1px solid #f5d9b8; border-radius: 999px; padding: 2px 10px; margin-bottom: 8px;
+  }
+
+  /* ---------- 变体 A：台账 ---------- */
+  .a { max-width: 1240px; margin: 0 auto; padding: 18px 24px; }
+  .a-toolbar {
+    display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    padding: 12px 14px; margin-bottom: 14px;
+  }
+  .a-toolbar input, .a-toolbar select {
+    font: inherit; padding: 6px 10px; border: 1px solid var(--line); border-radius: 7px; background: #fff;
+  }
+  .a-toolbar input { flex: 1; min-width: 200px; }
+  .chip {
+    font-size: 13px; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line);
+    background: #fff; cursor: pointer;
+  }
+  .chip[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .a-table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  .a-table th {
+    text-align: left; font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: .04em;
+    padding: 10px 14px; border-bottom: 1px solid var(--line); background: #fafbfc;
+  }
+  .a-table td { padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .a-table tr.row-main { cursor: pointer; }
+  .a-table tr.row-main:hover td { background: #fbfcfe; }
+  .a-detail td { background: #fafbfc; padding: 16px 18px; }
+  .a-detail dl { display: grid; grid-template-columns: 96px 1fr; margin: 0 0 10px; gap: 4px 12px; }
+  .a-detail dt { color: var(--muted); }
+  .a-detail dd { margin: 0; }
+
+  /* ---------- 变体 B：看板 ---------- */
+  .b { max-width: 1240px; margin: 0 auto; padding: 18px 24px; }
+  .b-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 14px; }
+  .b-head h2 { font-size: 17px; margin: 0; }
+  .b-head span { color: var(--muted); font-size: 13px; }
+  .b-board { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; align-items: start; }
+  .b-col { background: #eef0f4; border-radius: 12px; padding: 12px; min-height: 220px; }
+  .b-col h3 { font-size: 13px; margin: 0 0 10px; display: flex; justify-content: space-between; color: #475467; }
+  .b-col h3 b { font-weight: 700; }
+  .b-card { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 12px; margin-bottom: 10px; }
+  .b-card .id { font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; }
+  .b-card .t { font-weight: 600; margin: 4px 0 8px; }
+  .b-card .meta { display: flex; gap: 8px; align-items: center; font-size: 12px; color: var(--muted); }
+  .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .p-高 { background: #d92d20; } .p-中 { background: #f79009; } .p-低 { background: #98a2b3; }
+  .wait-late { color: var(--danger); font-weight: 600; }
+  .b-empty { color: #98a2b3; font-size: 13px; text-align: center; padding: 18px 0; }
+
+  /* ---------- 变体 C：时间线 ---------- */
+  .c { max-width: 1240px; margin: 0 auto; padding: 18px 24px; display: grid; grid-template-columns: 240px 1fr; gap: 18px; }
+  .c-rail { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; height: fit-content; }
+  .c-rail h3 { font-size: 12px; color: var(--muted); margin: 0; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+  .c-item { padding: 10px 14px; border-bottom: 1px solid var(--line); cursor: pointer; }
+  .c-item:hover { background: #fafbfc; }
+  .c-item[aria-selected="true"] { background: var(--accent-soft); box-shadow: inset 3px 0 0 var(--accent); }
+  .c-item .id { font-size: 12px; color: var(--muted); }
+  .c-item .t { font-size: 13px; }
+  .c-main { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; }
+  .c-main h2 { font-size: 17px; margin: 0 0 4px; }
+  .c-sub { color: var(--muted); font-size: 13px; margin-bottom: 16px; }
+  .c-events { border-left: 2px solid var(--line); padding-left: 16px; margin-left: 6px; }
+  .c-event { position: relative; padding-bottom: 16px; }
+  .c-event::before {
+    content: ""; position: absolute; left: -22px; top: 6px; width: 10px; height: 10px;
+    border-radius: 50%; background: #fff; border: 2px solid var(--line);
+  }
+  .c-event.is-customer::before { border-color: var(--accent); }
+  .c-event.is-system::before { border-color: #98a2b3; }
+  .c-event .who { font-size: 12px; color: var(--muted); }
+  .c-event .body { margin-top: 2px; }
+  .c-bubble {
+    background: #f4f6f9; border-radius: 10px; padding: 8px 12px; margin-top: 6px; display: inline-block;
+  }
+  .c-event.is-customer .c-bubble { background: var(--accent-soft); }
+
+  /* ---------- 切换栏 ---------- */
+  .switcher {
+    position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 4px; padding: 6px 8px;
+    background: #151a23; color: #fff; border-radius: 999px;
+    box-shadow: 0 8px 28px rgba(15, 20, 30, .28); z-index: 50;
+  }
+  .switcher button {
+    background: transparent; border: none; color: #fff; font: inherit; cursor: pointer;
+    width: 34px; height: 34px; border-radius: 999px; font-size: 16px; line-height: 1;
+  }
+  .switcher button:hover { background: rgba(255, 255, 255, .14); }
+  .switcher .label { padding: 0 10px; font-size: 13px; min-width: 190px; text-align: center; }
+  .switcher .label b { font-weight: 600; }
+  .switcher .label span { color: #aab2c0; }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<div class="proto-note">
+  <span class="tag">一次性原型 · UI 分支 · 只读</span>
+  <h1>客服工单工作台：三种排布</h1>
+  <p>
+    <b>要回答的问题：</b>这张工作台应该长什么样？三个变体的数据完全一样、排布结构完全不一样 ——
+    A 是<b>台账</b>（横向扫读，展开看详情），B 是<b>看板</b>（按状态占位，看积压），
+    C 是<b>时间线</b>（单条工单的对话流，看进展）。用底部切换栏翻看，觉得 B 的头部配 C 的侧栏也很正常 —— 那就说明原型起作用了。
+  </p>
+</div>
+
+<div id="host"></div>
+
+<div class="switcher" id="switcher">
+  <button id="prev" aria-label="上一个变体">‹</button>
+  <span class="label" id="switch-label"></span>
+  <button id="next" aria-label="下一个变体">›</button>
+</div>
+
+<script>
+/* ------------------------------------------------------------------
+ * 模拟数据：三个变体共用同一份。
+ * 只读原型，不连接任何真实变更操作。
+ * ------------------------------------------------------------------ */
+const TICKETS = [
+  {
+    id: 'TSK-1042', title: '退款什么时候到账', customer: '林女士', channel: '微信',
+    status: '处理中', priority: '中', assignee: '小周', waiting: 0, opened: '10-20',
+    detail: '10 月 20 日申请退款，订单号 A10231，卡已注销。',
+    resolution: '',
+    events: [
+      { who: '客户 林女士', type: 'customer', time: '10-20 09:12', body: '订单 A10231 申请退款，麻烦查一下进度。' },
+      { who: '系统', type: 'system', time: '10-20 09:13', body: '工单已创建，来源：微信。' },
+      { who: '客服 小周', type: 'agent', time: '10-20 10:02', body: '已受理，正在核对支付渠道的退款时效。' },
+      { who: '系统', type: 'system', time: '10-21 08:00', body: '已升级一线主管，优先级调整为「中」。' },
+    ],
+  },
+  {
+    id: 'TSK-1041', title: '发票抬头开错了', customer: '赵先生', channel: '邮件',
+    status: '等待客户', priority: '高', assignee: '小周', waiting: 4, opened: '10-19',
+    detail: '抬头写错了公司名，需要重开。',
+    resolution: '',
+    events: [
+      { who: '客户 赵先生', type: 'customer', time: '10-19 16:40', body: '发票抬头公司名写错了，需要重开一张。' },
+      { who: '客服 小周', type: 'agent', time: '10-19 17:05', body: '麻烦提供正确的公司全称和税号。' },
+      { who: '系统', type: 'system', time: '10-20 17:05', body: '等待客户第 1 天。' },
+      { who: '系统', type: 'system', time: '10-23 17:05', body: '等待客户第 4 天。' },
+    ],
+  },
+  {
+    id: 'TSK-1039', title: '套餐升级后价格没变', customer: '恒远科技', channel: '工单',
+    status: '待受理', priority: '高', assignee: '—', waiting: 0, opened: '10-24',
+    detail: '10 月 23 日升级了套餐，次月账单还是旧价。',
+    resolution: '',
+    events: [
+      { who: '客户 恒远科技', type: 'customer', time: '10-24 11:20', body: '10 月 23 日升级了套餐，次月账单还是旧价。' },
+      { who: '系统', type: 'system', time: '10-24 11:21', body: '工单已创建，等待分派。' },
+    ],
+  },
+  {
+    id: 'TSK-1036', title: '无法登录后台', customer: '王先生', channel: '电话',
+    status: '已解决', priority: '中', assignee: '小陈', waiting: 0, opened: '10-22',
+    detail: '提示密码错误，验证码收不到。',
+    resolution: '已重发验证码，客户确认可登录。',
+    events: [
+      { who: '客服 小陈', type: 'agent', time: '10-22 14:02', body: '核实手机号尾号 4321，验证码接口正常。' },
+      { who: '客服 小陈', type: 'agent', time: '10-22 14:09', body: '已重发验证码，请稍后再试。' },
+      { who: '客户 王先生', type: 'customer', time: '10-22 14:31', body: '好了，能登进去了。' },
+      { who: '系统', type: 'system', time: '10-22 14:31', body: '工单标记为已解决，等待客户确认。' },
+    ],
+  },
+  {
+    id: 'TSK-1030', title: '重复扣费', customer: '孙女士', channel: '微信',
+    status: '已关闭', priority: '高', assignee: '小陈', waiting: 0, opened: '10-15',
+    detail: '同一天被扣了两次。',
+    resolution: '第二次扣费已原路退回。',
+    events: [
+      { who: '客户 孙女士', type: 'customer', time: '10-15 20:11', body: '同一天被扣了两次款。' },
+      { who: '客服 小陈', type: 'agent', time: '10-16 09:30', body: '已原路退回第二次扣费。' },
+      { who: '客户 孙女士', type: 'customer', time: '10-16 15:44', body: '收到退款了，谢谢。' },
+      { who: '系统', type: 'system', time: '10-16 15:44', body: '客户确认，工单关闭。' },
+    ],
+  },
+];
+
+const STATUS_STYLE = {
+  '待受理': 'background:#fff7e6;color:#b54708',
+  '处理中': 'background:#eef4ff;color:#2f6feb',
+  '等待客户': 'background:#fdf2f8;color:#c11574',
+  '已解决': 'background:#ecfdf3;color:#067647',
+  '已关闭': 'background:#f2f4f7;color:#667085',
+};
+
+const VARIANTS = [
+  { key: 'A', name: '工单台账', desc: '横向扫读 + 展开详情' },
+  { key: 'B', name: '状态看板', desc: '按状态占位，看积压' },
+  { key: 'C', name: '对话时间线', desc: '单条工单的进展流' },
+];
+
+/* ------------------------------------------------------------------
+ * 变体 A：台账
+ * ------------------------------------------------------------------ */
+function renderA(host) {
+  const rows = TICKETS.map((t) => `
+    <tr class="row-main" data-id="${t.id}">
+      <td><code>${t.id}</code></td>
+      <td><b>${t.title}</b><br /><span style="color:var(--muted)">${t.customer} · ${t.channel}</span></td>
+      <td><span style="padding:3px 10px;border-radius:999px;font-size:12px;${STATUS_STYLE[t.status]}">${t.status}</span></td>
+      <td>${t.assignee}</td>
+      <td>${t.waiting > 0 ? `<span class="wait-late">${t.waiting} 天</span>` : '—'}</td>
+      <td style="color:var(--muted)">${t.opened}</td>
+    </tr>`).join('');
+
+  host.innerHTML = `
+  <div class="a">
+    <div class="a-toolbar">
+      <input placeholder="搜索编号、标题或客户" />
+      <button class="chip" aria-pressed="true">全部</button>
+      <button class="chip" aria-pressed="false">待受理</button>
+      <button class="chip" aria-pressed="false">处理中</button>
+      <button class="chip" aria-pressed="false">等待客户</button>
+      <button class="chip" aria-pressed="false">已解决</button>
+      <select><option>按等待天数排序</option><option>按优先级排序</option><option>按更新时间排序</option></select>
+    </div>
+    <table class="a-table">
+      <thead><tr><th>编号</th><th>问题</th><th>状态</th><th>受理人</th><th>等待</th><th>创建</th></tr></thead>
+      <tbody id="a-body">${rows}</tbody>
+    </table>
+  </div>`;
+
+  const body = host.querySelector('#a-body');
+  body.addEventListener('click', (e) => {
+    const tr = e.target.closest('tr.row-main');
+    if (!tr) return;
+    const next = tr.nextElementSibling;
+    if (next && next.classList.contains('a-detail')) { next.remove(); return; }
+    body.querySelectorAll('tr.a-detail').forEach((n) => n.remove());
+    const t = TICKETS.find((x) => x.id === tr.dataset.id);
+    const d = document.createElement('tr');
+    d.className = 'a-detail';
+    d.innerHTML = `<td colspan="6">
+      <dl>
+        <dt>问题描述</dt><dd>${t.detail}</dd>
+        <dt>处理结论</dt><dd>${t.resolution || '（尚未写结论）'}</dd>
+        <dt>来源</dt><dd>${t.channel}</dd>
+      </dl>
+      <div style="color:var(--muted);font-size:13px">最近动态：${t.events[t.events.length - 1].body}</div>
+    </td>`;
+    tr.after(d);
+  });
+}
+
+/* ------------------------------------------------------------------
+ * 变体 B：看板
+ * ------------------------------------------------------------------ */
+function renderB(host) {
+  const order = ['待受理', '处理中', '等待客户', '已解决'];
+  const cols = order.map((s) => {
+    const list = TICKETS.filter((t) => t.status === s);
+    const cards = list.length ? list.map((t) => `
+      <div class="b-card">
+        <div class="id"><span>${t.id}</span><span class="dot p-${t.priority}" title="优先级 ${t.priority}"></span></div>
+        <div class="t">${t.title}</div>
+        <div class="meta">
+          <span>${t.customer}</span> · <span>${t.assignee}</span>
+          ${t.waiting > 0 ? `<span class="wait-late">等 ${t.waiting} 天</span>` : ''}
+        </div>
+      </div>`).join('') : '<div class="b-empty">这一列是空的</div>';
+    return `<div class="b-col"><h3><span>${s}</span><b>${list.length}</b></h3>${cards}</div>`;
+  }).join('');
+
+  host.innerHTML = `
+  <div class="b">
+    <div class="b-head">
+      <h2>工单看板</h2>
+      <span>按状态占位：一眼看出哪一列在积压。等待超过 3 天的卡片会标红。</span>
+    </div>
+    <div class="b-board">${cols}</div>
+  </div>`;
+}
+
+/* ------------------------------------------------------------------
+ * 变体 C：对话时间线
+ * ------------------------------------------------------------------ */
+function renderC(host) {
+  const list = TICKETS.map((t, i) => `
+    <div class="c-item" data-i="${i}" aria-selected="${i === 0}">
+      <div class="id">${t.id} · ${t.status}</div>
+      <div class="t">${t.title}</div>
+    </div>`).join('');
+
+  host.innerHTML = `
+  <div class="c">
+    <div class="c-rail"><h3>全部工单（5）</h3>${list}</div>
+    <div class="c-main" id="c-main"></div>
+  </div>`;
+
+  const main = host.querySelector('#c-main');
+  const draw = (t) => {
+    main.innerHTML = `
+      <h2>${t.title}</h2>
+      <div class="c-sub"><code>${t.id}</code> · ${t.customer} · ${t.channel} · 受理人 ${t.assignee} · 创建于 ${t.opened}</div>
+      <div class="c-events">
+        ${t.events.map((e) => `
+          <div class="c-event is-${e.type}">
+            <div class="who">${e.who} · ${e.time}</div>
+            <div class="body"><div class="c-bubble">${e.body}</div></div>
+          </div>`).join('')}
+      </div>`;
+  };
+
+  draw(TICKETS[0]);
+  host.querySelector('.c-rail').addEventListener('click', (e) => {
+    const item = e.target.closest('.c-item');
+    if (!item) return;
+    host.querySelectorAll('.c-item').forEach((n) => n.setAttribute('aria-selected', 'false'));
+    item.setAttribute('aria-selected', 'true');
+    draw(TICKETS[Number(item.dataset.i)]);
+  });
+}
+
+/* ------------------------------------------------------------------
+ * 切换栏：?variant= A|B|C，可分享；左右方向键也能切。
+ * 生产构建里应当隐藏（真实项目请用 process.env.NODE_ENV !== 'production'）。
+ * ------------------------------------------------------------------ */
+const SHOW_SWITCHER = true; // 生产环境请改为 process.env.NODE_ENV !== 'production'
+
+function readVariant() {
+  const fromQuery = new URLSearchParams(location.search).get('variant');
+  if (fromQuery) return fromQuery.toUpperCase();
+  const m = /variant=([ABC])/i.exec(location.hash || '');
+  if (m) return m[1].toUpperCase();
+  return 'A';
+}
+
+function writeVariant(key) {
+  const url = new URL(location.href);
+  url.searchParams.set('variant', key);
+  try {
+    history.replaceState(null, '', url.toString());
+  } catch (e) {
+    location.hash = 'variant=' + key; // file:// 下某些浏览器禁止 replaceState
+  }
+}
+
+const host = document.getElementById('host');
+const label = document.getElementById('switch-label');
+let current = readVariant();
+
+function paint() {
+  if (!VARIANTS.some((v) => v.key === current)) current = 'A';
+  host.innerHTML = '';
+  if (current === 'A') renderA(host);
+  else if (current === 'B') renderB(host);
+  else renderC(host);
+  const v = VARIANTS.find((x) => x.key === current);
+  label.innerHTML = `<b>${v.key} · ${v.name}</b> <span>${v.desc}</span>`;
+  writeVariant(current);
+}
+
+document.getElementById('prev').addEventListener('click', () => {
+  const i = VARIANTS.findIndex((v) => v.key === current);
+  current = VARIANTS[(i - 1 + VARIANTS.length) % VARIANTS.length].key;
+  paint();
+});
+document.getElementById('next').addEventListener('click', () => {
+  const i = VARIANTS.findIndex((v) => v.key === current);
+  current = VARIANTS[(i + 1) % VARIANTS.length].key;
+  paint();
+});
+document.addEventListener('keydown', (e) => {
+  const t = e.target;
+  if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+  if (e.key === 'ArrowLeft') document.getElementById('prev').click();
+  if (e.key === 'ArrowRight') document.getElementById('next').click();
+});
+
+if (!SHOW_SWITCHER) document.getElementById('switcher').classList.add('hidden');
+paint();
+</script>
+</body>
+</html>
