@@ -14,11 +14,11 @@
 
 ## 上游基线
 
-`github.com/mattpocock/skills`，当前 **`main` @ `5beb35b`（2026-10-19）**——这是 1.3.1 之后、下一版本之前的未发布状态。
+`github.com/mattpocock/skills`，当前 **`main` @ `59db609`（2026-10-29）**——这是 1.3.1 之后、下一版本之前的未发布状态。
 
 最近发布标签 `v1.3.1` 指向 `24fe0ef`（2026-10-04），**不要拿发布标签当同步基线**：它比本地内容少 18 个文件，且没有 `chief-of-staff`。同步、比对一律以 commit 为准。
 
-2026-10-27 已验证：`英文版本/` 下四个桶的 107 个文件与 `5beb35b` 完全一致（行尾归一化后逐一哈希）。
+2026-10-29 已同步：`英文版本/engineering/setup-matt-pocock-skills/` 的 3 个文件更新到 `59db609`（上游 `ed0de59`、`59db609`），其余文件未变。`英文版本/` 下 107 个文件与 `59db609` 对应 skill 文件一致（行尾归一化后比较）。
 
 `~/.cc-switch/skills` 是英文上游的实际安装位；`~/.qoder-cn/skills` 是中文译本的实际加载位（38 个 skill），用 `python scripts/deploy_zh.py` 检查漂移、`--apply` 同步。两处另有部分他源 skill，不属于本仓库范围。
 

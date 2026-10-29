@@ -69,7 +69,7 @@ scripts/      ← 校验与部署脚本，只读，不改译文
 
 ## 维护边界
 
-- 上游是 [mattpocock/skills](https://github.com/mattpocock/skills)，基线 `main@5beb35b`（2026-10-19）。版本号落后于 `main`，别拿发布标签当基准。
+- 上游是 [mattpocock/skills](https://github.com/mattpocock/skills)，基线 `main@59db609`（2026-10-29）。版本号落后于 `main`，别拿发布标签当基准。
 - 上游更新后：先说清楚改了什么，再同步翻译；只重译有变化的文件，不在旧译文上打补丁。
 - 有些地方是有意偏离（比如模板里给人填的标题占位符允许本地化），都记在 `docs/wiki/`，别当成误译修回去。
 - 下面这些一律保持英文，因为它们要被程序读：frontmatter 的 `name`、分诊标签、tracker 协议行、脚本输出的 `BLOCKED:`。
