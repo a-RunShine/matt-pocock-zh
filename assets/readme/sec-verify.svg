@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="440" viewBox="0 0 1200 440" role="img" aria-labelledby="tv dv">
+  <title id="tv">校验成绩单</title>
+  <desc id="dv">8 项检查全绿：四桶对齐 38 个、文件对应 107 个、frontmatter 可解析、name 与目录同名、openai.yaml 键结构、旧术语残留 0、协议字符串计数、三个脚本语法。</desc>
+
+  <defs>
+    <pattern id="gridv" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#E6EADF" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="440" fill="#F8F9F3"/>
+  <rect width="1200" height="440" fill="url(#gridv)"/>
+
+  <g font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', -apple-system, 'Segoe UI', sans-serif">
+    <rect x="64" y="76" width="248" height="12" fill="#FFE45C"/>
+    <text x="64" y="180" font-size="96" font-weight="700" fill="#14161A" letter-spacing="-3">8 / 8</text>
+    <text x="64" y="226" font-size="24" fill="#4A4F48">项检查全绿</text>
+    <text x="64" y="300" font-size="22" fill="#7C827A">红了就打印文件和原因。</text>
+  </g>
+
+  <g fill="#FFE45C" stroke="#14161A" stroke-width="1.6">
+    <rect x="400" y="76" width="26" height="26"/>
+    <rect x="400" y="154" width="26" height="26"/>
+    <rect x="400" y="232" width="26" height="26"/>
+    <rect x="400" y="310" width="26" height="26"/>
+    <rect x="760" y="76" width="26" height="26"/>
+    <rect x="760" y="154" width="26" height="26"/>
+    <rect x="760" y="232" width="26" height="26"/>
+    <rect x="760" y="310" width="26" height="26"/>
+  </g>
+  <g fill="none" stroke="#14161A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M405 85 l3.5 3.5 l6 -7"/>
+    <path d="M405 163 l3.5 3.5 l6 -7"/>
+    <path d="M405 241 l3.5 3.5 l6 -7"/>
+    <path d="M405 319 l3.5 3.5 l6 -7"/>
+    <path d="M765 85 l3.5 3.5 l6 -7"/>
+    <path d="M765 163 l3.5 3.5 l6 -7"/>
+    <path d="M765 241 l3.5 3.5 l6 -7"/>
+    <path d="M765 319 l3.5 3.5 l6 -7"/>
+  </g>
+
+  <g font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', -apple-system, 'Segoe UI', sans-serif" font-size="24" fill="#14161A">
+    <text x="440" y="96">四桶对齐 38 / 38</text>
+    <text x="440" y="174">文件对应 107 / 107</text>
+    <text x="440" y="252">frontmatter 能解析</text>
+    <text x="440" y="330">name 与目录同名</text>
+    <text x="800" y="96">openai.yaml 键结构</text>
+    <text x="800" y="174">旧术语残留 0</text>
+    <text x="800" y="252">协议字符串计数</text>
+    <text x="800" y="330">三个脚本语法</text>
+  </g>
+</svg>

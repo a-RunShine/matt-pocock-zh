@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="tb db">
+  <title id="tb">四个分类的索引条</title>
+  <desc id="db">工程 20 个、生产力 7 个、进行中 7 个、杂项 4 个，四栏并排，荧光黄标头。</desc>
+
+  <defs>
+    <pattern id="gridb" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#E6EADF" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="360" fill="#F8F9F3"/>
+  <rect width="1200" height="360" fill="url(#gridb)"/>
+
+  <g font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', -apple-system, 'Segoe UI', sans-serif">
+    <rect x="64" y="52" width="72" height="8" fill="#FFE45C"/>
+    <text x="64" y="164" font-size="96" font-weight="700" fill="#14161A" letter-spacing="-3">20</text>
+    <text x="64" y="212" font-size="30" font-weight="700" fill="#14161A">工程</text>
+    <text x="64" y="246" font-size="20" fill="#7C827A">Engineering</text>
+    <text x="64" y="292" font-size="22" fill="#4A4F48">日常写代码</text>
+
+    <rect x="348" y="52" width="72" height="8" fill="#FFE45C"/>
+    <text x="348" y="164" font-size="96" font-weight="700" fill="#14161A" letter-spacing="-3">7</text>
+    <text x="348" y="212" font-size="30" font-weight="700" fill="#14161A">生产力</text>
+    <text x="348" y="246" font-size="20" fill="#7C827A">Productivity</text>
+    <text x="348" y="292" font-size="22" fill="#4A4F48">不限代码</text>
+
+    <rect x="632" y="52" width="72" height="8" fill="#FFE45C"/>
+    <text x="632" y="164" font-size="96" font-weight="700" fill="#14161A" letter-spacing="-3">7</text>
+    <text x="632" y="212" font-size="30" font-weight="700" fill="#14161A">进行中</text>
+    <text x="632" y="246" font-size="20" fill="#7C827A">In Progress</text>
+    <text x="632" y="292" font-size="22" fill="#4A4F48">随时会变</text>
+
+    <rect x="916" y="52" width="72" height="8" fill="#FFE45C"/>
+    <text x="916" y="164" font-size="96" font-weight="700" fill="#14161A" letter-spacing="-3">4</text>
+    <text x="916" y="212" font-size="30" font-weight="700" fill="#14161A">杂项</text>
+    <text x="916" y="246" font-size="20" fill="#7C827A">Misc</text>
+    <text x="916" y="292" font-size="22" fill="#4A4F48">自用少用</text>
+  </g>
+
+  <line x1="64" y1="322" x2="1136" y2="322" stroke="#D3D8C9" stroke-width="1"/>
+</svg>
