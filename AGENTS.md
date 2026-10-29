@@ -31,7 +31,7 @@
 3. 逐 skill 逐文件比对新上游与旧基线，产出「新增 / 修改 / 删除」清单，**先报告给用户**。
 4. 只重译有变化的文件（不要在旧译文上打补丁），然后确认文件树一一对齐。
 5. 跑 `python scripts/verify_zh.py`，全绿后再提交；更新本节的 commit 与日期。
-6. 跑 `python scripts/deploy_zh.py --check`；有漂移就 `--apply` 同步到 `~/.qoder-cn/skills`，再确认漂移为 0。
+6. 跑 `python scripts/deploy_zh.py`（默认只读检查，没有 `--check` 参数）；有漂移就 `--apply` 同步到 `~/.qoder-cn/skills`，再确认漂移为 0。
 
 比对陷阱：本地或安装位可能是 CRLF，上游是 LF。直接比字节会把全部文件误判成「不同」。比较前先归一化 `\r\n` → `\n`，否则会得出「38 个全是旧版」这种假结论。
 
