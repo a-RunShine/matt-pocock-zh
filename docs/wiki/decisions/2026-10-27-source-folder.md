@@ -10,6 +10,8 @@
 - 之后：`英文版本/engineering/`、`英文版本/in-progress/`、`英文版本/misc/`、`英文版本/productivity/`，与 `中文版本/` 同级。
 - 根目录现在只保留 `AGENTS.md`、`英文版本/`、`中文版本/`、`docs/`、`scripts/`。
 
+2026-10-29 补充：`3cd0ec4` 起根目录另有 `README.md`、`assets/` 与 `.gitattributes`。上文「只保留」清单为 2026-10-27 当时的状态。
+
 ## 影响
 
 - `AGENTS.md` 的目录职责、基线与比对流程改以 `英文版本/` 为根。
@@ -27,3 +29,4 @@
 - [元数据收进 docs/](2026-10-27-docs-consolidation.md)
 - [基线与环境 2026-10-27](../repo/baseline-2026-10-27.md)
 - [目标宪章 2026-10-27](../goals/2026-10-27-charter.md)
+- [新增 实操/](2026-10-27-practice-folder.md)

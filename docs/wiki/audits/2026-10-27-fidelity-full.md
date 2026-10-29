@@ -2,10 +2,10 @@
 
 来源（四份原始报告，均在 `docs/reports/`）：
 
-- `2026-10-27-fidelity-full-engineering-a.md`
-- `2026-10-27-fidelity-full-engineering-b.md`
-- `2026-10-27-fidelity-full-in-progress-misc.md`
-- `2026-10-27-fidelity-full-productivity.md`
+- [2026-10-27-fidelity-full-engineering-a.md](../../reports/2026-10-27-fidelity-full-engineering-a.md)
+- [2026-10-27-fidelity-full-engineering-b.md](../../reports/2026-10-27-fidelity-full-engineering-b.md)
+- [2026-10-27-fidelity-full-in-progress-misc.md](../../reports/2026-10-27-fidelity-full-in-progress-misc.md)
+- [2026-10-27-fidelity-full-productivity.md](../../reports/2026-10-27-fidelity-full-productivity.md)
 
 ## 范围
 
