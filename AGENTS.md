@@ -105,3 +105,4 @@ Select-String -Path .\中文版本\* -Pattern 'CONTEXT\.md|CONTEXT-MAP' -Recurse
 - 控制台按 GBK 显示，UTF-8 中文会变乱码，但**文件本身没问题**。读内容用 read 工具，不要靠 `Get-Content` 的显示结果判断译文对错。
 - 跑 `Get-Content` / `Select-String` 时显式加 `-Encoding UTF8`。
 - 文件名含中文，`bash` 与部分工具处理 Windows 路径会失败；优先用工作目录切换而非拼接绝对路径。
+- 提交前守卫在 `.githooks/pre-commit`，它运行 `verify_zh.py`。`core.hooksPath` 是本机 git 配置、不随仓库走，每台机器需执行一次 `git config core.hooksPath .githooks`。
