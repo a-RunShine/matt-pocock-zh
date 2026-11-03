@@ -1,0 +1,5 @@
+#!/bin/sh
+# 提交前只读校验译本；失败则拒绝提交。
+set -e
+cd "$(git rev-parse --show-toplevel)"
+python scripts/verify_zh.py
