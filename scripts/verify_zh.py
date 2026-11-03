@@ -86,7 +86,7 @@ def main() -> int:
             bad(f"{p.relative_to(ROOT)}: name 不是合法英文标识: {name!r}")
             name_mismatch += 1
     if not parse_failed:
-        ok("38 个 SKILL.md frontmatter 全部可被 YAML 解析")
+        ok(f"{len(list(ZH.rglob('SKILL.md')))} 个 SKILL.md frontmatter 全部可被 YAML 解析")
     if not name_mismatch:
         ok("所有 name 为英文且与目录名一致")
 
@@ -169,6 +169,18 @@ def main() -> int:
         bad(f"wayfinder 地图节名未保留英文: {', '.join(missing_headings)}")
     else:
         ok("wayfinder 地图节名保持英文")
+
+    section_zh_names = ["已做出的决定", "尚未明确的部分", "范围之外", "活跃的工单"]
+    dual_name_hits = [
+        f"{p.relative_to(ROOT)}: **{zh}**"
+        for p in [ZH / "engineering/wayfinder/SKILL.md"]
+        for zh in section_zh_names
+        if f"**{zh}**" in read(p)
+    ]
+    if dual_name_hits:
+        bad(f"wayfinder 节名以中文粗体引用（应使用英文节名）: {', '.join(dual_name_hits)}")
+    else:
+        ok("wayfinder 节名引用统一为英文")
 
     avoid_hits = [str(p.relative_to(ROOT)) for p in ZH.rglob("*") if p.is_file() and "_避免_" in read(p)]
     if avoid_hits:

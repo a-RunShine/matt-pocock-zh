@@ -86,8 +86,12 @@ def main() -> int:
         dst.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(src, dst)
         copied += 1
-    print(f"已同步 {copied} 个文件；备份目录：{backup}")
-    print("未处理缺失 skill 与安装目录多出的文件，请人工确认。")
+    created = 0
+    for name in missing_skills:
+        shutil.copytree(mapping[name], target / name)
+        created += 1
+    print(f"已同步 {copied} 个文件；新建 {created} 个缺失 skill；备份目录：{backup}")
+    print("未处理安装目录多出的文件，请人工确认。")
     return 0
 
 
