@@ -28,6 +28,7 @@
 
 - [2026-10-27 上游状态](upstream/2026-10-27-state.md) — 上游未发新版；`v1.3.1` 标签落后本地 18 个文件；本次零重译。
 - [2026-10-29 上游状态](upstream/2026-10-29-state.md) — 上游前进到 `59db609`；3 个 setup-matt-pocock-skills 文件重译并同步。
+- [2026-11-02 上游状态](upstream/2026-11-02-state.md) — 上游前进到 `4ae2317`；9 个已有 skill 文件与新增 `software-factory` 重译并同步。
 
 ## 规则
 

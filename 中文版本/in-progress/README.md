@@ -15,3 +15,4 @@ npx skills@latest add mattpocock/skills --skill=<name>
 - **[writing-shape](./writing-shape/SKILL.md)**：接收一份原始素材的 markdown 文件，逐段把它塑造成文章，并在每一步论证格式选择。
 - **[claude-handoff](./claude-handoff/SKILL.md)**：把当前对话交接给一个全新的后台智能体，让它立即接手工作；交接摘要通过 `claude --bg` 作为其提示词传入。用户调用型。
 - **[setup-ts-deep-modules](./setup-ts-deep-modules/SKILL.md)**：在 TypeScript 仓库中接入 dependency-cruiser，使每个包都成为深度模块：实现隐藏在子文件夹中，只能通过入口文件访问，测试也通过这些入口文件行使它。用户调用型。
+- **[software-factory](./software-factory/SKILL.md)**：为设计软件工厂提供共享语言：它要运行的任务，以及它所接入的服务。与拷问会话一同调用。用户调用型。
