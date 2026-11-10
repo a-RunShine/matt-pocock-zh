@@ -195,6 +195,62 @@ def main() -> int:
     else:
         bad("beta 提示缺失")
 
+    section("文档链接")
+    link_bad = 0
+    link_total = 0
+    doc_roots = (
+        *sorted((ROOT / "docs/wiki").rglob("*.md")),
+        *sorted((ROOT / "CODING_STANDARDS").rglob("*.md")),
+        ROOT / "README.md",
+        ROOT / "AGENTS.md",
+    )
+    for p in doc_roots:
+        if not p.exists():
+            continue
+        in_fence = False
+        for lineno, line in enumerate(read(p).splitlines(), 1):
+            if line.strip().startswith("```"):
+                in_fence = not in_fence
+                continue
+            if in_fence:
+                continue
+            body = re.sub(r"`[^`]*`", "", line)
+            for m in re.finditer(r"\]\(([^)]+)\)", body):
+                target = m.group(1).split("#")[0].strip()
+                if not target or re.match(r"^[A-Za-z][A-Za-z0-9+.-]*:", target):
+                    continue
+                link_total += 1
+                if not (p.parent / target).exists():
+                    bad(f"{p.relative_to(ROOT)}:{lineno}: 死链 {target}")
+                    link_bad += 1
+    if not link_bad:
+        ok(f"文档链接无死链（{link_total} 条，不含 docs/reports 的历史引述）")
+
+    section("README 规模数字")
+    readme = read(ROOT / "README.md")
+    skill_count = len(list(ZH.rglob("SKILL.md")))
+    file_count = sum(1 for bucket in BUCKETS for p in (EN / bucket).rglob("*") if p.is_file())
+    m = re.search(r"^\| (\d+) \| (\d+) \| 0 \|", readme, re.M)
+    if m and (int(m.group(1)), int(m.group(2))) == (skill_count, file_count):
+        ok(f"规模表一致（{skill_count} skill / {file_count} 文件）")
+    else:
+        got = f"{m.group(1)}/{m.group(2)}" if m else "未识别"
+        bad(f"README 规模表过期：写 {got}，实际 {skill_count}/{file_count}")
+    for line in readme.splitlines():
+        m = re.match(r"\| [^|]+\| (\d+) \| .*?中文版本/([a-z-]+)\]", line)
+        if m:
+            actual = len(list((ZH / m.group(2)).rglob("SKILL.md")))
+            if int(m.group(1)) != actual:
+                bad(f"README 分类表过期：{m.group(2)} 写 {m.group(1)}，实际 {actual}")
+            else:
+                ok(f"分类表 {m.group(2)} 一致（{actual}）")
+    prose = re.findall(r"(\d+) (?:个 skill|个里挑|个文件)", readme)
+    stale = [n for n in prose if int(n) not in {skill_count, file_count}]
+    if stale:
+        bad(f"README 正文数字过期：{', '.join(stale)}（实际 skill={skill_count} 文件={file_count}）")
+    else:
+        ok(f"正文数字一致（skill={skill_count} 文件={file_count}）")
+
     section("脚本语法")
     scripts = [
         ZH / "engineering/wizard/template.sh",
