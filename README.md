@@ -81,7 +81,9 @@ scripts/      ← 校验与部署脚本，只读，不改译文
 
 ## 出处
 
-译文对应上游 [mattpocock/skills](https://github.com/mattpocock/skills)，版权归原作者所有。发现译错或有更顺的说法，欢迎开 issue。
+译文对应上游 [mattpocock/skills](https://github.com/mattpocock/skills)，版权归原作者所有。
+
+发现译错或有更顺的说法，欢迎开 issue（走分诊），也可以直接发 PR（走评审）。译文 PR 请对照 `AGENTS.md` 的「翻译不变量」自查：`name`、分诊标签、tracker 协议行、代码围栏内的命令一律不译，术语以 `docs/wiki/rules/2026-10-27-terminology.md` 为准。
 
 <p align="center">
   <img src="assets/readme/sec-footer.svg" alt="不知道从哪开始，就问 ask-matt" width="100%">

@@ -13,6 +13,20 @@
 
 两边的同名桶必须严格对齐，缺一多一都是错；实际数量以 `python scripts/verify_zh.py` 的输出为准。`docs/`、`scripts/`、`实操/` 与 `CODING_STANDARDS/` 不参与桶内对齐。
 
+## Agent skills
+
+### Issue tracker
+
+issue 与规格都发到本仓库的 GitHub Issues（用 `gh` CLI），译文 PR 不进分诊队列、走评审。见 `docs/agents/issue-tracker.md`。
+
+### Triage labels
+
+五个规范分诊标签原样使用，不改名。见 `docs/agents/triage-labels.md`。
+
+### Domain docs
+
+single-context（仓库根一个 `GLOSSARY.md` 加 `docs/adr/`）。见 `docs/agents/domain.md`。
+
 ## 上游基线
 
 `github.com/mattpocock/skills`，当前 **`main` @ `4ae2317`（2026-11-02）**——这是 1.3.1 之后、下一版本之前的未发布状态。
