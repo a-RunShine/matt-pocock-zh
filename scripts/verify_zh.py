@@ -198,8 +198,13 @@ def main() -> int:
     section("文档链接")
     link_bad = 0
     link_total = 0
+    dated_report = re.compile(r"^\d{4}-\d{2}-\d{2}-")
     doc_roots = (
-        *sorted((ROOT / "docs/wiki").rglob("*.md")),
+        *(
+            p
+            for p in sorted((ROOT / "docs").rglob("*.md"))
+            if not (p.parent.name == "reports" and dated_report.match(p.name))
+        ),
         *sorted((ROOT / "CODING_STANDARDS").rglob("*.md")),
         ROOT / "README.md",
         ROOT / "AGENTS.md",

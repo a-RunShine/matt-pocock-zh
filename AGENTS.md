@@ -86,7 +86,7 @@ python scripts/deploy_zh.py
 
 `verify_zh.py` 覆盖：四桶对齐、frontmatter YAML、`name` 与目录一致、`openai.yaml` 键结构、旧术语、协议字符串计数、beta 提示、文档死链、README 规模数字、三个脚本语法。它每次运行都打印实际的桶内文件数，**这是规模的唯一权威来源**。任一失败打印文件与原因，并以非零码退出。
 
-死链检查只覆盖 `docs/wiki/`、`CODING_STANDARDS/` 与根目录文档；`docs/reports/` 是逐字引述上游的历史记录，其中的路径是引文不是链接，不检查。
+死链检查覆盖 `docs/` 下除 `docs/reports/` 里带日期的历史报告之外的全部 markdown，加 `CODING_STANDARDS/` 与根目录文档。历史报告逐字引述上游原文，其中的路径是引文不是本仓库链接，不检查。
 
 `deploy_zh.py` 默认只读，比对 `中文版本/` 与 `~/.qoder-cn/skills`；有漂移时非零退出，`--apply` 才备份并同步。
 
