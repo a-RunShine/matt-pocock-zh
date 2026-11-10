@@ -14,7 +14,7 @@
 
 | 英文 | 中文 / 处理 | 备注 |
 | --- | --- | --- |
-| skill | 保留 | 全仓 150 处英文，不译 |
+| skill | 保留 | 全仓数量不固定，以实际译文为准 |
 | agent | 智能体 | |
 | subagent / sub-agent | 子智能体 | |
 | background agent | 后台智能体 | |

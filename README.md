@@ -6,7 +6,7 @@ Matt Pocock 写的一套 agent skills，让 AI 编程智能体按固定流程干
 
 ## 规模
 
-| 38 | 107 | 0 |
+| 39 | 113 | 0 |
 |:--:|:--:|:--:|
 | 个 skill | 个文件 | 处漂移 |
 
@@ -16,18 +16,18 @@ Matt Pocock 写的一套 agent skills，让 AI 编程智能体按固定流程干
 | --- | :--: | --- | --- |
 | 工程 Engineering | 20 | 日常写代码：需求、spec、ticket、TDD、review、排错 | [中文版本/engineering](中文版本/engineering/README.md) |
 | 生产力 Productivity | 7 | 不限于代码的工作流：访谈、交接、教学、写文档 | [中文版本/productivity](中文版本/productivity/README.md) |
-| 进行中 In Progress | 7 | beta，随时会变，别急着依赖 | [中文版本/in-progress](中文版本/in-progress/README.md) |
+| 进行中 In Progress | 8 | beta，随时会变，别急着依赖 | [中文版本/in-progress](中文版本/in-progress/README.md) |
 | 杂项 Misc | 4 | 自用但少用的小工具 | [中文版本/misc](中文版本/misc/README.md) |
 
-38 个 skill 的点名录在各桶自己的 README 里，这里不重复 38 行。
+39 个 skill 的点名录在各桶自己的 README 里，这里不重复 39 行。
 
 <p align="center">
-  <img src="assets/readme/sec-buckets.svg" alt="四个分类的索引：工程 20 个、生产力 7 个、进行中 7 个、杂项 4 个" width="100%">
+  <img src="assets/readme/sec-buckets.svg" alt="四个分类的索引：工程、生产力、进行中、杂项" width="100%">
 </p>
 
 ## 第一次来，先试这三个
 
-- **ask-matt**：不知道该用哪个 skill 时问它，它会根据你的场景推荐，不用自己从 38 个里挑。
+- **ask-matt**：不知道该用哪个 skill 时问它，它会根据你的场景推荐，不用自己从 39 个里挑。
 - **tdd**：红-绿-重构，一次一小步，先写出失败的测试。
 - **handoff**：把当前对话整理成一份交接文档，交给另一个智能体接着做。
 
@@ -51,7 +51,7 @@ git clone https://github.com/a-RunShine/matt-pocock-zh.git
 python scripts/verify_zh.py
 ```
 
-一次跑完这些检查：四个桶 38 个 skill 一一对齐、frontmatter 能被解析、`name` 与目录同名、`openai.yaml` 键结构、旧术语残留、协议字符串计数、beta 提示、三个脚本的语法。全绿才算数，红了会打印文件和原因。
+一次跑完这些检查：四个桶的 skill 一一对齐、frontmatter 能被解析、`name` 与目录同名、`openai.yaml` 键结构、旧术语残留、协议字符串计数、beta 提示、三个脚本的语法。全绿才算数，红了会打印文件和原因。
 
 <p align="center">
   <img src="assets/readme/sec-verify.svg" alt="校验成绩单：8 项检查全绿，四桶对齐、文件对应、frontmatter、name 同名、openai.yaml、旧术语、协议字符串、脚本语法" width="100%">
@@ -60,7 +60,7 @@ python scripts/verify_zh.py
 ## 目录结构
 
 ```text
-中文版本/     ← 唯一产出物，四个桶 38 个 skill
+中文版本/     ← 唯一产出物，四个桶的全部 skill
 英文版本/     ← 上游原文，只读参照，不要手改
 docs/         ← wiki 记忆、术语规则、审计结论
 scripts/      ← 校验与部署脚本，只读，不改译文

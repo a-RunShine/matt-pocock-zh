@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="t4 d4">
   <title id="t4">Matt Pocock Agent Skills 中文译本 — 书呆子版头图</title>
-  <desc id="d4">方格纸底，黄色光斑与闪点环绕标本框里的书呆子表情，右侧是标题、荧光笔划出的口号，以及 38、107、0 三个大号数字。</desc>
+  <desc id="d4">方格纸底，黄色光斑与闪点环绕标本框里的书呆子表情，右侧是标题、荧光笔划出的口号，以及表示桶数、中英对应与零漂移三个大号数字。</desc>
 
   <defs>
     <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -56,13 +56,13 @@
   <ellipse cx="832" cy="396" rx="46" ry="42" fill="none" stroke="#FFE45C" stroke-width="7" transform="rotate(-8 832 396)"/>
 
   <g font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', -apple-system, 'Segoe UI', sans-serif" font-weight="700" fill="#14161A" font-size="76" letter-spacing="-2">
-    <text x="420" y="424">38</text>
-    <text x="620" y="424">107</text>
+    <text x="420" y="424">4</text>
+    <text x="620" y="424">1:1</text>
     <text x="810" y="424">0</text>
   </g>
   <g font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', -apple-system, 'Segoe UI', sans-serif" font-size="20" font-weight="600" fill="#4A4F48">
-    <text x="420" y="456">个 skill</text>
-    <text x="620" y="456">个文件</text>
+    <text x="420" y="456">个分类</text>
+    <text x="620" y="456">中英对应</text>
     <text x="810" y="456">处漂移</text>
   </g>
 </svg>

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="tb db">
   <title id="tb">四个分类的索引条</title>
-  <desc id="db">工程 20 个、生产力 7 个、进行中 7 个、杂项 4 个，四栏并排，荧光黄标头。</desc>
+  <desc id="db">工程、生产力、进行中、杂项四个分类并排，荧光黄标头。</desc>
 
   <defs>
     <pattern id="gridb" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -25,7 +25,7 @@
     <text x="348" y="292" font-size="22" fill="#4A4F48">不限代码</text>
 
     <rect x="632" y="52" width="72" height="8" fill="#FFE45C"/>
-    <text x="632" y="164" font-size="96" font-weight="700" fill="#14161A" letter-spacing="-3">7</text>
+    <text x="632" y="164" font-size="96" font-weight="700" fill="#14161A" letter-spacing="-3">8</text>
     <text x="632" y="212" font-size="30" font-weight="700" fill="#14161A">进行中</text>
     <text x="632" y="246" font-size="20" fill="#7C827A">In Progress</text>
     <text x="632" y="292" font-size="22" fill="#4A4F48">随时会变</text>

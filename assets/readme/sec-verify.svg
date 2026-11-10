@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="440" viewBox="0 0 1200 440" role="img" aria-labelledby="tv dv">
   <title id="tv">校验成绩单</title>
-  <desc id="dv">8 项检查全绿：四桶对齐 38 个、文件对应 107 个、frontmatter 可解析、name 与目录同名、openai.yaml 键结构、旧术语残留 0、协议字符串计数、三个脚本语法。</desc>
+  <desc id="dv">8 项检查全绿：四桶对齐、文件一一对应、frontmatter 可解析、name 与目录同名、openai.yaml 键结构、旧术语残留、协议字符串计数、三个脚本语法。</desc>
 
   <defs>
     <pattern id="gridv" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -40,8 +40,8 @@
   </g>
 
   <g font-family="'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', -apple-system, 'Segoe UI', sans-serif" font-size="24" fill="#14161A">
-    <text x="440" y="96">四桶对齐 38 / 38</text>
-    <text x="440" y="174">文件对应 107 / 107</text>
+    <text x="440" y="96">四桶对齐</text>
+    <text x="440" y="174">文件一一对应</text>
     <text x="440" y="252">frontmatter 能解析</text>
     <text x="440" y="330">name 与目录同名</text>
     <text x="800" y="96">openai.yaml 键结构</text>

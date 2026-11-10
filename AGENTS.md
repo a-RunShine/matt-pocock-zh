@@ -4,13 +4,13 @@
 
 ## 目录职责
 
-- `英文版本/` — 上游英文原版，内含 `engineering/` `productivity/` `in-progress/` `misc/` 四个桶、39 个 skill。**只读参照，不要手改**；改了会和上游失联。上游另有空的 `deprecated/` 占位桶，不镜像。
+- `英文版本/` — 上游英文原版，内含 `engineering/` `productivity/` `in-progress/` `misc/` 四个桶。**只读参照，不要手改**；改了会和上游失联。上游另有空的 `deprecated/` 占位桶，不镜像。
 - `中文版本/` — 与 `英文版本/` 1:1 对应的中文译文，同样 4 个桶。**这是本仓库唯一产出物。**
-- `docs/` — 元数据，不属于产出物：`docs/wiki/` 是长期记忆（索引、决策、规则、审计结论），`docs/reports/` 是子智能体原始报告。
+- `docs/` — 元数据，不属于产出物：`docs/wiki/` 是长期记忆（索引、决策、规则、审计结论），`docs/reports/` 是子智能体原始报告，入口见 [报告索引](docs/reports/README.md)。
 - `scripts/` — 校验与部署脚本：`verify_zh.py` 只读校验，`deploy_zh.py` 默认只读查漂移、`--apply` 才同步安装位，不修改译文。
 - `实操/` — 用本仓库译本亲手跑 skill 留下的产物（原型、演练等）。**不属于产出物**，不参与桶内对齐，也不该被上游同步覆盖；按需维护，可以随时删。
 
-两边的同名桶必须严格对齐：`英文版本/<桶>` 与 `中文版本/<桶>` 当前各 39 个 skill、113 个文件（61 + 22 + 10 + 20），缺一多一都是错。`docs/`、`scripts/` 与 `实操/` 不参与桶内对齐。
+两边的同名桶必须严格对齐，缺一多一都是错；实际数量以 `python scripts/verify_zh.py` 的输出为准。`docs/`、`scripts/` 与 `实操/` 不参与桶内对齐。
 
 ## 上游基线
 
@@ -35,7 +35,7 @@
 5. 跑 `python scripts/verify_zh.py`，全绿后再提交；更新本节的 commit 与日期。
 6. 跑 `python scripts/deploy_zh.py`（默认只读检查，没有 `--check` 参数）；有漂移就 `--apply` 同步到 `~/.qoder-cn/skills`，再确认漂移为 0。
 
-比对陷阱：本地或安装位可能是 CRLF，上游是 LF。直接比字节会把全部文件误判成「不同」。比较前先归一化 `\r\n` → `\n`，否则会得出「38 个全是旧版」这种假结论。
+比对陷阱：本地或安装位可能是 CRLF，上游是 LF。直接比字节会把全部文件误判成「不同」。比较前先归一化 `\r\n` → `\n`，否则会得出「整桶都是旧版」这种假结论。
 
 ## 翻译不变量
 
@@ -52,7 +52,7 @@
 - 跨文件术语以 `docs/wiki/rules/2026-10-27-terminology.md` 为准；新术语先查表，新增或改判都要带日期。
 - `CONTEXT.md` / `CONTEXT-MAP.md` 在 v1.3.0 已全面改名为 `GLOSSARY.md` / `GLOSSARY-MAP.md`，中文版不得再出现旧名。
 
-`中文版本/in-progress/README.md` 顶部的 beta 提示是**有意添加、上游没有的**（`in-progress` 下 7 个 skill 都是 beta，可能随时变动），同步时不要删。
+`中文版本/in-progress/README.md` 顶部的 beta 提示是**有意添加、上游没有的**（`in-progress` 下全部 skill 都是 beta，可能随时变动），同步时不要删。
 
 ## 已知有意偏离
 
@@ -69,7 +69,7 @@ python scripts/verify_zh.py
 python scripts/deploy_zh.py
 ```
 
-`verify_zh.py` 覆盖：四桶对齐、frontmatter YAML、`name` 与目录一致、`openai.yaml` 键结构、旧术语、协议字符串计数、beta 提示、三个脚本语法。任一失败打印文件与原因，并以非零码退出。
+`verify_zh.py` 覆盖：四桶对齐、frontmatter YAML、`name` 与目录一致、`openai.yaml` 键结构、旧术语、协议字符串计数、beta 提示、三个脚本语法。它每次运行都打印实际的桶内文件数，**这是规模的唯一权威来源**。任一失败打印文件与原因，并以非零码退出。
 
 `deploy_zh.py` 默认只读，比对 `中文版本/` 与 `~/.qoder-cn/skills`；有漂移时非零退出，`--apply` 才备份并同步。
 
@@ -78,14 +78,10 @@ python scripts/deploy_zh.py
 手动兜底（脚本环境不可用时）：
 
 ```powershell
-# 文件树对齐：missing=0 / extra=0
 # 三个脚本语法（bash 不接受 C:/ 形式路径，用 workdir 切到脚本目录传相对名）
 bash -n template.sh                    # workdir: 中文版本\engineering\wizard
 bash -n hitl-loop.template.sh          # workdir: 中文版本\engineering\diagnosing-bugs\scripts
 bash -n block-dangerous-git.sh         # workdir: 中文版本\misc\git-guardrails-claude-code\scripts
-
-# 旧术语残留检查
-Select-String -Path .\中文版本\* -Pattern 'CONTEXT\.md|CONTEXT-MAP' -Recurse -Encoding UTF8
 ```
 
 ## 改动流程
