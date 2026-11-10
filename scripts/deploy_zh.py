@@ -76,6 +76,7 @@ def main() -> int:
     stamp = time.strftime("%Y%m%d-%H%M%S")
     backup = target.parent / f"skills-backup-{stamp}"
     copied = 0
+    backed_up = 0
     for name, rel, kind in changes:
         src = mapping[name] / rel
         dst = target / name / rel
@@ -83,6 +84,7 @@ def main() -> int:
             bak = backup / name / rel
             bak.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(dst, bak)
+            backed_up += 1
         dst.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(src, dst)
         copied += 1
@@ -90,7 +92,8 @@ def main() -> int:
     for name in missing_skills:
         shutil.copytree(mapping[name], target / name)
         created += 1
-    print(f"已同步 {copied} 个文件；新建 {created} 个缺失 skill；备份目录：{backup}")
+    backup_note = f"备份目录：{backup}" if backed_up else "无覆盖，未生成备份"
+    print(f"已同步 {copied} 个文件；新建 {created} 个缺失 skill；{backup_note}")
     print("未处理安装目录多出的文件，请人工确认。")
     return 0
 

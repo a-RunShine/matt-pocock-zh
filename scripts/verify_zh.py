@@ -170,17 +170,18 @@ def main() -> int:
     else:
         ok("wayfinder 地图节名保持英文")
 
-    section_zh_names = ["已做出的决定", "尚未明确的部分", "范围之外", "活跃的工单"]
+    section_zh_names = ["目的地", "备注", "已做出的决定", "尚未明确的部分", "范围之外", "活跃的工单"]
     dual_name_hits = [
-        f"{p.relative_to(ROOT)}: **{zh}**"
-        for p in [ZH / "engineering/wayfinder/SKILL.md"]
+        f"{p.relative_to(ROOT)}:{lineno}: **{zh}**"
+        for p in sorted(ZH.rglob("*.md"))
+        for lineno, line in enumerate(read(p).splitlines(), 1)
         for zh in section_zh_names
-        if f"**{zh}**" in read(p)
+        if f"**{zh}**" in line
     ]
     if dual_name_hits:
-        bad(f"wayfinder 节名以中文粗体引用（应使用英文节名）: {', '.join(dual_name_hits)}")
+        bad(f"地图节名以中文粗体引用（应使用英文节名）: {', '.join(dual_name_hits)}")
     else:
-        ok("wayfinder 节名引用统一为英文")
+        ok("全仓地图节名引用统一为英文")
 
     avoid_hits = [str(p.relative_to(ROOT)) for p in ZH.rglob("*") if p.is_file() and "_避免_" in read(p)]
     if avoid_hits:
