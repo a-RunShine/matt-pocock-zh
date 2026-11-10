@@ -45,6 +45,10 @@ git clone https://github.com/a-RunShine/matt-pocock-zh.git
   <img src="assets/readme/sec-install.svg" alt="安装三步：克隆仓库、拷进 skills 目录、先试 ask-matt" width="100%">
 </p>
 
+## 附：编码规范模板
+
+`CODING_STANDARDS/` 下有三份可以直接拷进项目使用的规范模板：TypeScript、Python、Java。它们不是 Matt Pocock skill 的内容，是调研结论的归纳；每条事故都是示例，照抄前必须换成你项目里真实的那次。
+
 ## 译文怎么保证没跑偏
 
 ```bash
@@ -60,8 +64,9 @@ python scripts/verify_zh.py
 ## 目录结构
 
 ```text
-中文版本/     ← 唯一产出物，四个桶的全部 skill
+中文版本/     ← 唯一译文产出物，四个桶的全部 skill
 英文版本/     ← 上游原文，只读参照，不要手改
+CODING_STANDARDS/  ← 编码规范模板，供拷进别的项目
 docs/         ← wiki 记忆、术语规则、审计结论
 scripts/      ← 校验与部署脚本，只读，不改译文
 实操/         ← 亲手跑 skill 留下的产物，随时可删

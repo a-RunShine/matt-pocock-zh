@@ -5,12 +5,13 @@
 ## 目录职责
 
 - `英文版本/` — 上游英文原版，内含 `engineering/` `productivity/` `in-progress/` `misc/` 四个桶。**只读参照，不要手改**；改了会和上游失联。上游另有空的 `deprecated/` 占位桶，不镜像。
-- `中文版本/` — 与 `英文版本/` 1:1 对应的中文译文，同样 4 个桶。**这是本仓库唯一产出物。**
+- `中文版本/` — 与 `英文版本/` 1:1 对应的中文译文，同样 4 个桶。**这是本仓库唯一的译文产出物。**
+- `CODING_STANDARDS/` — 对外提供的编码规范模板（TypeScript / Python / Java），供拷进别的项目使用。不属于译文，不参与桶内对齐，`verify_zh.py` 与 `deploy_zh.py` 都不碰它。**它不是本仓库自身的规范**：本仓库是文档项目，没有代码。
 - `docs/` — 元数据，不属于产出物：`docs/wiki/` 是长期记忆（索引、决策、规则、审计结论），`docs/reports/` 是子智能体原始报告，入口见 [报告索引](docs/reports/README.md)。
 - `scripts/` — 校验与部署脚本：`verify_zh.py` 只读校验，`deploy_zh.py` 默认只读查漂移、`--apply` 才同步安装位，不修改译文。
 - `实操/` — 用本仓库译本亲手跑 skill 留下的产物（原型、演练等）。**不属于产出物**，不参与桶内对齐，也不该被上游同步覆盖；按需维护，可以随时删。
 
-两边的同名桶必须严格对齐，缺一多一都是错；实际数量以 `python scripts/verify_zh.py` 的输出为准。`docs/`、`scripts/` 与 `实操/` 不参与桶内对齐。
+两边的同名桶必须严格对齐，缺一多一都是错；实际数量以 `python scripts/verify_zh.py` 的输出为准。`docs/`、`scripts/`、`实操/` 与 `CODING_STANDARDS/` 不参与桶内对齐。
 
 ## 上游基线
 

@@ -18,6 +18,7 @@
 - [2026-10-27 Wiki 位置](decisions/2026-10-27-wiki-location.md) — 最初放在仓库根 `wiki/`；位置部分已被上一条取代。
 - [2026-10-27 报告与 wiki 分离](decisions/2026-10-27-sources-vs-wiki.md) — 原始报告与 wiki 职责分离；位置已改为 `docs/reports/`。
 - [2026-10-27 新增 `实操/`](decisions/2026-10-27-practice-folder.md) — 亲手跑 skill 的产物单独存放，不属于产出物、不参与桶内对齐。
+- [2026-11-10 编码规范模板收进仓库](decisions/2026-11-10-standards-templates.md) — 三份模板放仓库根 `CODING_STANDARDS/`，示例事故显式标注，不进桶内对齐。
 
 ## 仓库基线
 
