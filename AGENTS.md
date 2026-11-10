@@ -89,6 +89,8 @@ bash -n block-dangerous-git.sh         # workdir: 中文版本\misc\git-guardrai
 
 ## 改动流程
 
+用户消息里点名的 skill（`@x` 或 `/x`），其流程是要求，不是参考：先产出该 skill 的交付物，再做用户要求的动作。skill 写明的回退分支也是流程的一部分，撞上就执行，不要沉默跳过。
+
 1. 读 `docs/wiki/index.md`；涉及术语或脚手架时，读 `docs/wiki/rules/`。
 2. `git status` 确认工作区干净；不干净先弄清是谁改的。
 3. 只改必要文件，一次提交只做一类改动（修复 / 同步 / 规则）。

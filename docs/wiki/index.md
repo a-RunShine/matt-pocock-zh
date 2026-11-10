@@ -46,6 +46,7 @@
 
 - [AGENTS.md 基线标注错误](issues/2026-10-27-agents-baseline-label.md) — 把未发布的 `main`@`5beb35b` 标成了 `v1.3.1`，按标签同步会回退（整改原则仍有效；基线已于 2026-10-29 前进至 `59db609`）。
 - [缺少 frontmatter 自动校验](issues/2026-10-27-no-frontmatter-validation.md) — 非法 YAML 能静默通过现有验证流程。
+- [skill 流程被跳过](issues/2026-11-10-skill-process-skipped.md) — 用户点名 `to-spec` 却直接进入实现；交付物应先于动作，回退分支也是流程。
 
 ## 进行中
 
