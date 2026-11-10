@@ -35,6 +35,8 @@
 
 2026-11-10：`AGENTS.md` 的「改动流程」开头加了对应的一条 steering：skill 流程是要求、回退分支也要执行。用户选仓库级而非全局，理由是这个仓库正是做规格与 skill 翻译工作的地方；若日后在别处重犯，再考虑上全局 `~/.config/opencode/AGENTS.md`。
 
+2026-11-10：规格已补写，见 [Spec：编码规范模板收进仓库](../../specs/2026-11-10-coding-standards-templates.md)。标注为事后补的，用途是审阅与对照，不是决策。
+
 ## 相关
 
 - [编码规范模板收进仓库](../decisions/2026-11-10-standards-templates.md)
