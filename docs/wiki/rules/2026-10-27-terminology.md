@@ -46,6 +46,15 @@
 | relentless | 不留情面 / 不依不饶 | 按词性选，不用「不间断」 |
 | assets | 资产（assets） | 与 resources「资源」区分 |
 | 分诊标签 / `wayfinder:*` / `BLOCKED:` / triage AI 声明 | 保留 | 见 [协议字符串](2026-10-27-protocol-strings.md) |
+| task（工厂语境） | 任务 | 2026-11-02 新增，见 software-factory；与「运行」「执行器」成组 |
+| run | 运行 | 2026-11-02 新增；与 harness「运行装置」不同义，正文不混用 |
+| runner | 执行器（runner） | 2026-11-02 新增；不译「服务器 / 主机」，那些是上游明确的避免用语 |
+| trigger | 触发器 | 2026-11-02 新增 |
+| orchestrator | 编排器 | 2026-11-02 新增；不译「调度器」（dispatcher / scheduler 为避免用语） |
+| ticket tracker | 工单跟踪器 | 2026-11-02 新增；不译「issue 跟踪器」（issue tracker 为避免用语） |
+| ticket source | 工单来源 | 2026-11-02 新增；不译「数据源」（data source 为避免用语） |
+| git host | git 托管平台 | 2026-11-02 新增；不译「代码托管」（code host 为避免用语） |
+| observability platform | 可观测性平台 | 2026-11-02 新增 |
 
 ## 相关
 
