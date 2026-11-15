@@ -14,6 +14,7 @@
 | 2026-10-29 | [upstream-check](2026-10-29-upstream-check.md) | 上游前进到 `59db609`；重译并同步 `setup-matt-pocock-skills` 的 3 个文件。 |
 | 2026-11-02 | [upstream-check](2026-11-02-upstream-check.md) | 上游前进到 `4ae2317`；重译 9 个已有文件，新增 `software-factory`（6 个文件）。 |
 | 2026-11-10 | [coding-standards-research](2026-11-10-coding-standards-research.md) | 调研 Matt Pocock 的 `CODING_STANDARDS.md` 约定：规范属 reviewer、机械规则做成检查、深模块只有边界可机械化。 |
+| 2026-11-15 | [upstream-check](2026-11-15-upstream-check.md) | 上游前进到 `5863806`；`software-factory` 的 2 个文件重译并同步。 |
 
 ## 相关
 

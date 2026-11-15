@@ -10,7 +10,7 @@ disable-model-invocation: true
 
 **Task（任务）**：
 工厂执行的一类工作，只定义一次，可运行多次：评审、探索、实现、棘轮。一个任务可以针对某张工单、某个 PR，或整个代码库来工作。
-_Avoid_: job, workflow, action
+_Avoid_: job, workflow, action（作为任务的名字）。CI 供应商的 workflow 文件和其中的 job，是任务被接线的地方，不是任务本身。
 
 **Trigger（触发器）**：
 启动一次运行的事件：工单跟踪器或 git 托管平台上的变更、编排器中的时钟，或另一次运行。
